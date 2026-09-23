@@ -204,17 +204,6 @@ export default function Footer({ setActivePage }) {
                 <Mail className="w-4 h-4 text-[#cd9834] flex-shrink-0" />
                 <span className="truncate">{ATELIER_INFO.email}</span>
               </div>
-
-              <div className="pt-2">
-                <a
-                  href={`https://wa.me/${ATELIER_INFO.phones[0].clean}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="buick-pill-gold-outline w-full py-2.5 text-xs text-center justify-center text-white border-[#cd9834] hover:bg-[#cd9834]"
-                >
-                  WhatsApp Direct Inquiry
-                </a>
-              </div>
             </div>
           </div>
         </div>
