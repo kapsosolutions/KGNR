@@ -6,12 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>KGN.R | Gold Finishing &amp; Designing Works — Fine Ornaments &amp; Sacred Temple Jewellery</title>
     <meta name="description" content="KGN.R Platinum, Gold &amp; Silver Digital Finishing Works. Master artisans in Nellore Chinna Bazaar for temple jewellery, bespoke gold ornaments, meenakari enamel, and precision machine cutting." />
+    <link rel="preload" as="image" href="/hero.webp" type="image/webp" />
+    <link rel="preload" as="image" href="/collections/1.webp" type="image/webp" />
+    <link rel="preload" as="image" href="/collections/2.webp" type="image/webp" />
+    <link rel="preload" as="image" href="/collections/3.webp" type="image/webp" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   </head>
   <body class="bg-[#ffffff] text-[#333333] antialiased selection:bg-[#cd9834]/20 selection:text-[#cd9834]">
     <div id="root"></div>
+    <script>
+      // Immediate Service Worker Registration for persistent offline image caching
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').then((reg) => {
+            console.log('KGN.R Service Worker active:', reg.scope);
+          }).catch(() => {});
+        });
+      }
+    </script>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

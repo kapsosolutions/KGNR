@@ -144,7 +144,7 @@ body {
 .animate-marquee {
   display: flex;
   width: max-content;
-  animation: marquee 14s linear infinite;
+  animation: marquee 8s linear infinite;
   will-change: transform;
 }
 
@@ -156,13 +156,13 @@ body {
 
 @media (min-width: 640px) {
   .animate-marquee {
-    animation-duration: 20s;
+    animation-duration: 14s;
   }
 }
 
 @media (min-width: 1024px) {
   .animate-marquee {
-    animation-duration: 26s;
+    animation-duration: 20s;
   }
 }
 

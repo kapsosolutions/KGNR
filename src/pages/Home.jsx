@@ -1,21 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ATELIER_INFO } from '../data/ornamentsData';
 import VideoShowcase from '../components/VideoShowcase';
 import WhatsAppIcon from '../components/WhatsAppIcon';
 import { Sparkles, ArrowRight, MapPin, Clock, Phone, Mail, Navigation, ShieldCheck, CheckCircle2, MessageCircle } from 'lucide-react';
 
 const MARQUEE_IMAGES = [
-  { id: 1, src: '/collections/1.png', title: 'Royal Gold Bangles & Kadas' },
-  { id: 2, src: '/collections/2.png', title: 'Sacred Deity Om Crown' },
-  { id: 3, src: '/collections/3.png', title: 'Temple Nakshi Haar' },
-  { id: 4, src: '/collections/4.png', title: 'Bespoke Heritage Necklace' },
-  { id: 5, src: '/collections/5.png', title: 'Imperial Gemstone Choker' },
-  { id: 6, src: '/collections/6.png', title: '22K Handcrafted Jhumkas' },
-  { id: 7, src: '/collections/7.png', title: 'Royal Vadanam Waistbelt' },
-  { id: 8, src: '/collections/8.png', title: 'Nakshi Bridal Choker' },
-  { id: 9, src: '/collections/9.png', title: 'Vitreous Enamel Bangle' },
-  { id: 10, src: '/collections/10.png', title: 'Antique Temple Pendant' },
-  { id: 11, src: '/collections/11.png', title: 'Imperial Girdle & Kada' },
+  { id: 1, webp: '/collections/1.webp', src: '/collections/1.png', title: 'Royal Gold Bangles & Kadas' },
+  { id: 2, webp: '/collections/2.webp', src: '/collections/2.png', title: 'Sacred Deity Om Crown' },
+  { id: 3, webp: '/collections/3.webp', src: '/collections/3.png', title: 'Temple Nakshi Haar' },
+  { id: 4, webp: '/collections/4.webp', src: '/collections/4.png', title: 'Bespoke Heritage Necklace' },
+  { id: 5, webp: '/collections/5.webp', src: '/collections/5.png', title: 'Imperial Gemstone Choker' },
+  { id: 6, webp: '/collections/6.webp', src: '/collections/6.png', title: '22K Handcrafted Jhumkas' },
+  { id: 7, webp: '/collections/7.webp', src: '/collections/7.png', title: 'Royal Vadanam Waistbelt' },
+  { id: 8, webp: '/collections/8.webp', src: '/collections/8.png', title: 'Nakshi Bridal Choker' },
+  { id: 9, webp: '/collections/9.webp', src: '/collections/9.png', title: 'Vitreous Enamel Bangle' },
+  { id: 10, webp: '/collections/10.webp', src: '/collections/10.png', title: 'Antique Temple Pendant' },
+  { id: 11, webp: '/collections/11.webp', src: '/collections/11.png', title: 'Imperial Girdle & Kada' },
 ];
 
 export default function Home() {
@@ -29,6 +29,18 @@ export default function Home() {
   const [formSubmitted, setFormSubmitted] = useState(false);
 
   const primaryWhatsApp = ATELIER_INFO.phones[0].clean;
+
+  // Immediate in-memory image pre-caching so collections load instantly
+  useEffect(() => {
+    MARQUEE_IMAGES.forEach((item) => {
+      const img = new Image();
+      img.src = item.webp;
+    });
+    const heroImg = new Image();
+    heroImg.src = '/hero.webp';
+    const cardImg = new Image();
+    cardImg.src = '/card.webp';
+  }, []);
 
   const scrollToSection = (id) => {
     if (id === 'home') {
@@ -128,14 +140,18 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Right Column: Hero Image (/hero.png from public) - Pure flat white, no shadow, no hover */}
+            {/* Right Column: Hero Image (/hero.webp with /hero.png fallback) - Pure flat white, no shadow, no hover */}
             <div className="lg:col-span-6 flex items-center justify-center">
               <div className="w-full max-w-lg lg:max-w-xl">
-                <img
-                  src="/hero.png"
-                  alt="Sri Rama &amp; Sita Celestial Kalyanam 22K Temple Pendant"
-                  className="w-full h-auto object-contain"
-                />
+                <picture>
+                  <source srcSet="/hero.webp" type="image/webp" />
+                  <img
+                    src="/hero.png"
+                    alt="Sri Rama &amp; Sita Celestial Kalyanam 22K Temple Pendant"
+                    className="w-full h-auto object-contain"
+                    loading="eager"
+                  />
+                </picture>
               </div>
             </div>
           </div>
@@ -156,7 +172,7 @@ export default function Home() {
           </p>
         </div>
 
-        {/* Continuous Moving Marquee of Clean Images (No Card Box, No Text Labels) */}
+        {/* Continuous Moving Marquee of Clean Images (No Card Box, No Text Labels, Instant WebP Caching) */}
         <div className="relative w-full overflow-hidden">
           <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
           <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
@@ -167,13 +183,17 @@ export default function Home() {
                 key={idx}
                 className="flex-shrink-0 flex items-center justify-center py-2 select-none"
               >
-                <img
-                  src={item.src}
-                  alt={item.title}
-                  className="h-28 sm:h-44 md:h-52 w-auto max-w-[180px] sm:max-w-[280px] object-contain select-none pointer-events-none"
-                  loading="lazy"
-                  draggable={false}
-                />
+                <picture>
+                  <source srcSet={item.webp} type="image/webp" />
+                  <img
+                    src={item.src}
+                    alt={item.title}
+                    className="h-28 sm:h-44 md:h-52 w-auto max-w-[180px] sm:max-w-[280px] object-contain select-none pointer-events-none"
+                    loading="eager"
+                    decoding="async"
+                    draggable={false}
+                  />
+                </picture>
               </div>
             ))}
           </div>
@@ -199,14 +219,18 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-0">
-            {/* Left Column: Visiting Card Image (/card.png from public) */}
+            {/* Left Column: Visiting Card Image (/card.webp with /card.png fallback) */}
             <div className="lg:col-span-6 relative">
               <div className="relative rounded-2xl overflow-hidden border border-[#cd9834]/40 bg-[#faf9f8] p-3 sm:p-4 shadow-sm group">
-                <img
-                  src="/card.png"
-                  alt="KGN.R Official Workshop Card - Rabbani Shaik"
-                  className="w-full h-auto rounded-xl object-contain transition-transform duration-500 group-hover:scale-[1.02]"
-                />
+                <picture>
+                  <source srcSet="/card.webp" type="image/webp" />
+                  <img
+                    src="/card.png"
+                    alt="KGN.R Official Workshop Card - Rabbani Shaik"
+                    className="w-full h-auto rounded-xl object-contain transition-transform duration-500 group-hover:scale-[1.02]"
+                    loading="eager"
+                  />
+                </picture>
                 <div className="mt-3 text-center">
                   <span className="text-xs text-[#6f6f6d] font-medium">
                     Official Workshop Identity Card • Korada St, Chinna Bazaar, Nellore
