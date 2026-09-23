@@ -27,19 +27,17 @@ export default function Navbar({ activePage, setActivePage }) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  return (
-    <header className="sticky top-0 z-50 transition-all duration-300 relative overflow-hidden border-b border-white/10 shadow-lg">
-      {/* Background Image matching Hero */}
-      <div className="absolute inset-0 z-0">
-        <img 
-          src="/assets/ganesha_haar.jpg" 
-          alt="Hero Background" 
-          className="w-full h-full object-cover object-top filter brightness-105 contrast-105"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/55 to-black/60" />
-      </div>
+  const isHomeAtTop = activePage === 'home' && !isScrolled;
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  return (
+    <header 
+      className={`sticky top-0 z-50 transition-all duration-300 ${
+        isHomeAtTop 
+          ? 'bg-transparent border-b border-white/5' 
+          : 'bg-[#111111]/95 backdrop-blur-md border-b border-white/10 shadow-lg'
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20 gap-4">
           {/* Brand Logo & Name */}
           <button 

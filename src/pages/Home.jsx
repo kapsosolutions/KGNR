@@ -12,7 +12,7 @@ export default function Home({ setActivePage, onSelectOrnament }) {
   return (
     <div className="space-y-0">
       {/* 1. Full-Bleed Luxury Hero Section with Vibrant Visible Jewelry Backdrop */}
-      <section className="relative min-h-[90vh] flex items-center justify-center bg-[#111111] overflow-hidden">
+      <section className="relative -mt-20 pt-20 min-h-screen flex items-center justify-center bg-[#111111] overflow-hidden">
         {/* Full-Bleed Photography Canvas with Complete Hero Overlay */}
         <div className="absolute inset-0 z-0">
           <img
