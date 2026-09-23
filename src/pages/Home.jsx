@@ -251,10 +251,10 @@ export default function Home({ onSelectOrnament }) {
                 </div>
               </div>
 
-              <div className="pt-2 flex flex-wrap gap-4">
+              <div className="pt-2 flex items-center gap-3">
                 <button
                   onClick={() => scrollToSection('contact')}
-                  className="buick-pill-dark text-xs uppercase tracking-wider py-3 px-6"
+                  className="buick-pill-dark text-xs uppercase tracking-wider py-3 px-6 whitespace-nowrap"
                 >
                   <span>Book In-Person Consultation</span>
                 </button>
@@ -262,10 +262,11 @@ export default function Home({ onSelectOrnament }) {
                   href={`https://wa.me/${primaryWhatsApp}?text=Hello%20Master%20Rabbani%20Shaik%2C%20I%20would%20like%20to%20consult%20on%20an%20ornament%20or%20finishing%20project.`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="buick-pill-primary border border-[#25D366]/50 text-xs uppercase tracking-wider py-3 px-6 flex items-center gap-2"
+                  className="w-11 h-11 rounded-full border border-[#25D366]/50 bg-[#f6fbf7] hover:bg-[#25D366]/15 hover:border-[#25D366] flex items-center justify-center transition-all hover:scale-105 flex-shrink-0 shadow-sm"
+                  title="WhatsApp Master Rabbani"
+                  aria-label="WhatsApp Master Rabbani"
                 >
-                  <WhatsAppIcon className="w-4 h-4" color="#25D366" />
-                  <span>WhatsApp Master Rabbani</span>
+                  <WhatsAppIcon className="w-5 h-5" color="#25D366" />
                 </a>
               </div>
             </div>
