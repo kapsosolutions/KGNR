@@ -13,78 +13,76 @@ export default function Home({ setActivePage, onSelectOrnament }) {
   return (
     <div className="space-y-0">
       {/* 1. Full-Bleed Luxury Hero Section with Vibrant Visible Jewelry Backdrop */}
-      <section className="relative min-h-[90vh] flex items-center justify-center bg-[#1a1816] overflow-hidden">
-        {/* Full-Bleed Photography Canvas - Highly visible with light gradient overlay */}
+      <section className="relative min-h-[90vh] flex items-center justify-center bg-[#111111] overflow-hidden">
+        {/* Full-Bleed Photography Canvas with Complete Hero Overlay */}
         <div className="absolute inset-0 z-0">
           <img
             src="/assets/ganesha_haar.jpg"
             alt="Lord Ganesha Temple Ruby Haar"
-            className="w-full h-full object-cover object-center opacity-90 scale-100 filter brightness-105 contrast-105 transition-all duration-700"
+            className="w-full h-full object-cover object-center filter brightness-105 contrast-105"
           />
-          {/* Light, soft vignette overlay so the gold necklace shines brightly */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/15 to-black/25" />
+          {/* Complete hero overlay with balanced opacity: dark enough for crisp text, transparent enough to see the gold jewelry */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/55 to-black/60" />
         </div>
 
-        {/* Hero Content Box with subtle luxury glass backing for maximum legibility */}
-        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-20 sm:py-28">
-          <div className="bg-black/45 backdrop-blur-[3px] rounded-3xl p-6 sm:p-12 border border-[#cd9834]/40 shadow-2xl">
-            {/* Antique Gold Whispered Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#cd9834]/60 bg-black/60 backdrop-blur-md mb-6">
-              <Sparkles className="w-3.5 h-3.5 text-[#cd9834]" />
-              <span className="text-xs uppercase tracking-widest text-[#cd9834] font-medium">
-                EST. 2000 • NELLORE CHINNA BAZAAR
-              </span>
-            </div>
-
-            {/* Buick Headline 56px / weight 500 */}
-            <h1 className="font-headline text-4xl sm:text-6xl lg:text-7xl font-light tracking-tight text-white leading-tight mb-6 drop-shadow-md">
-              The Sacred Whisper of <br className="hidden sm:inline" />
-              <span className="font-normal text-white">Pure Gold &amp; Divine Craft</span>
-            </h1>
-
-            {/* Lead body text */}
-            <p className="max-w-2xl mx-auto text-base sm:text-xl text-[#f3f1ed] font-normal leading-relaxed mb-8 drop-shadow">
-              KGN.R Platinum, Gold &amp; Silver Digital Finishing Works. South India’s sanctuary for temple deity mukhavatas, bespoke 22K heirlooms, and imperial meenakari enamel.
-            </p>
-
-            {/* Pill CTA Buttons */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <button
-                onClick={() => {
-                  setActivePage('collection');
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
-                }}
-                className="buick-pill-primary text-xs uppercase tracking-wider w-full sm:w-auto shadow-md hover:scale-105 transition-transform"
-              >
-                <span>Explore Master Collection</span>
-                <ArrowRight className="w-4 h-4 text-[#cd9834]" />
-              </button>
-
-              <button
-                onClick={() => {
-                  setActivePage('contact');
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
-                }}
-                className="buick-pill-gold-outline text-xs uppercase tracking-wider text-white border-[#cd9834] bg-black/30 hover:bg-[#cd9834] w-full sm:w-auto transition-all"
-              >
-                <span>Custom Atelier Commission</span>
-              </button>
-            </div>
+        {/* Clean Full-Bleed Content (No glass box) */}
+        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-24 sm:py-32">
+          {/* Antique Gold Whispered Badge */}
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#cd9834]/60 bg-black/50 backdrop-blur-sm mb-6">
+            <Sparkles className="w-3.5 h-3.5 text-[#cd9834]" />
+            <span className="text-xs uppercase tracking-widest text-[#cd9834] font-medium">
+              EST. 2000 • NELLORE CHINNA BAZAAR
+            </span>
           </div>
 
-          {/* Floating Key Guarantees Strip */}
-          <div className="mt-8 pt-6 border-t border-white/20 grid grid-cols-2 md:grid-cols-4 gap-6 text-left bg-black/40 backdrop-blur-sm rounded-2xl p-4 sm:p-6 border border-white/10">
+          {/* Buick Headline 56px / weight 500 */}
+          <h1 className="font-headline text-4xl sm:text-6xl lg:text-7xl font-light tracking-tight text-white leading-tight mb-6 drop-shadow-md">
+            The Sacred Whisper of <br className="hidden sm:inline" />
+            <span className="font-normal text-white">Pure Gold &amp; Divine Craft</span>
+          </h1>
+
+          {/* Lead body text */}
+          <p className="max-w-2xl mx-auto text-base sm:text-xl text-[#f3f1ed] font-normal leading-relaxed mb-10 drop-shadow">
+            KGN.R Platinum, Gold &amp; Silver Digital Finishing Works. South India’s sanctuary for temple deity mukhavatas, bespoke 22K heirlooms, and imperial meenakari enamel.
+          </p>
+
+          {/* Pill CTA Buttons */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <button
+              onClick={() => {
+                setActivePage('collection');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              className="buick-pill-primary text-xs uppercase tracking-wider w-full sm:w-auto shadow-lg hover:scale-105 transition-transform"
+            >
+              <span>Explore Master Collection</span>
+              <ArrowRight className="w-4 h-4 text-[#cd9834]" />
+            </button>
+
+            <button
+              onClick={() => {
+                setActivePage('contact');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              className="buick-pill-gold-outline text-xs uppercase tracking-wider text-white border-[#cd9834] bg-black/40 hover:bg-[#cd9834] hover:text-black w-full sm:w-auto transition-all"
+            >
+              <span>Custom Atelier Commission</span>
+            </button>
+          </div>
+
+          {/* Key Guarantees Strip */}
+          <div className="mt-16 pt-8 border-t border-white/15 grid grid-cols-2 md:grid-cols-4 gap-6 text-left">
             <div>
               <div className="text-[#cd9834] text-xs uppercase font-medium tracking-widest mb-1">
                 Zero Gold Loss
               </div>
-              <p className="text-xs text-[#dcdad6]">Digital ultrasonic buffing</p>
+              <p className="text-xs text-[#dcdad6]">Digital ultrasonic buffing technology</p>
             </div>
             <div>
               <div className="text-[#cd9834] text-xs uppercase font-medium tracking-widest mb-1">
                 100% BIS 916
               </div>
-              <p className="text-xs text-[#dcdad6]">Complete HUID hallmarking</p>
+              <p className="text-xs text-[#dcdad6]">Complete HUID purity hallmarking</p>
             </div>
             <div>
               <div className="text-[#cd9834] text-xs uppercase font-medium tracking-widest mb-1">
