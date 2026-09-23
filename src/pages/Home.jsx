@@ -5,6 +5,20 @@ import VideoShowcase from '../components/VideoShowcase';
 import WhatsAppIcon from '../components/WhatsAppIcon';
 import { Sparkles, ArrowRight, MapPin, Clock, Phone, Navigation } from 'lucide-react';
 
+const MARQUEE_IMAGES = [
+  { id: 1, src: '/collections/1.png', title: 'Royal Gold Bangles & Kadas' },
+  { id: 2, src: '/collections/2.png', title: 'Sacred Deity Om Crown' },
+  { id: 3, src: '/collections/3.png', title: 'Temple Nakshi Haar' },
+  { id: 4, src: '/collections/4.png', title: 'Bespoke Heritage Necklace' },
+  { id: 5, src: '/collections/5.png', title: 'Imperial Gemstone Choker' },
+  { id: 6, src: '/collections/6.png', title: '22K Handcrafted Jhumkas' },
+  { id: 7, src: '/collections/7.png', title: 'Royal Vadanam Waistbelt' },
+  { id: 8, src: '/collections/8.png', title: 'Nakshi Bridal Choker' },
+  { id: 9, src: '/collections/9.png', title: 'Vitreous Enamel Bangle' },
+  { id: 10, src: '/collections/10.png', title: 'Antique Temple Pendant' },
+  { id: 11, src: '/collections/11.png', title: 'Imperial Girdle & Kada' },
+];
+
 export default function Home({ setActivePage, onSelectOrnament }) {
   const featuredOrnaments = ORNAMENTS.filter((item) => item.featured).slice(0, 3);
   const primaryWhatsApp = ATELIER_INFO.phones[0].clean;
@@ -103,82 +117,51 @@ export default function Home({ setActivePage, onSelectOrnament }) {
         </div>
       </section>
 
-      {/* 2. Editorial Philosophy Strip */}
-      <section className="bg-[#f6f5f4] py-20 px-4 sm:px-6 lg:px-8 border-b border-[#f0f0f0]">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div className="lg:col-span-5 space-y-6">
-              <span className="text-xs font-semibold uppercase tracking-widest text-[#cd9834] block">
-                THE ATELIER PHILOSOPHY
-              </span>
-              <h2 className="font-headline text-3xl sm:text-4xl font-light text-[#222222] leading-tight">
-                Gold That Whispers <br />
-                <span className="font-normal">With Royal Restraint</span>
-              </h2>
-              <p className="text-[#333333] text-sm sm:text-base leading-relaxed font-normal">
-                Unlike commercial mass-manufactured jewellery, true luxury lies in the nuanced subtleties: the micro-carvings on Lord Ganesha’s crown, the glassy depth of hand-fired peacock enamel, and the velvet feel of satin-buffed 22K bullion against the skin.
-              </p>
-              <p className="text-[#6f6f6d] text-xs sm:text-sm leading-relaxed">
-                Founded in Nellore’s historic Chinna Bazaar goldsmith quarter, KGN.R blends ancient Nakshi repoussé with precision digital electro-polishing to preserve every milligram of precious heritage.
-              </p>
+      {/* 2. Continuous Moving Marquee of Atelier Collections */}
+      <section className="bg-[#faf9f8] py-14 sm:py-16 border-b border-[#f0f0f0] overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8 text-center">
+          <span className="text-xs font-semibold uppercase tracking-widest text-[#cd9834] block mb-2">
+            MASTER ATELIER SHOWCASE
+          </span>
+          <h2 className="font-headline text-2xl sm:text-4xl font-light text-[#222222]">
+            Signature Vault Collections
+          </h2>
+          <p className="text-xs sm:text-sm text-[#6f6f6d] mt-2 max-w-xl mx-auto">
+            From imperial deity mukhavatas to bespoke diamond bridal ornaments, explore our hallmarked 22K masterpieces.
+          </p>
+        </div>
 
-              <div className="pt-2">
-                <button
-                  onClick={() => {
-                    setActivePage('about');
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                  }}
-                  className="text-xs font-semibold uppercase tracking-wider text-[#222222] hover:text-[#cd9834] transition-colors inline-flex items-center gap-2"
-                >
-                  <span>Read the Full Goldsmith Heritage</span>
-                  <ArrowRight className="w-3.5 h-3.5 text-[#cd9834]" />
-                </button>
-              </div>
-            </div>
+        {/* Continuous Moving Marquee */}
+        <div className="relative w-full overflow-hidden">
+          {/* Subtle gradient fades at left and right */}
+          <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-r from-[#faf9f8] to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-l from-[#faf9f8] to-transparent z-10 pointer-events-none" />
 
-            <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="bg-white p-4 rounded-2xl border border-[#f0f0f0] flex flex-col justify-between">
-                <div className="aspect-[4/3] rounded-xl overflow-hidden bg-[#f6f5f4] mb-3">
+          <div className="animate-marquee flex gap-6 items-center py-4">
+            {[...MARQUEE_IMAGES, ...MARQUEE_IMAGES].map((item, idx) => (
+              <div
+                key={idx}
+                onClick={() => {
+                  setActivePage('collection');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="w-56 h-56 sm:w-64 sm:h-64 flex-shrink-0 bg-white rounded-2xl border border-[#f0f0f0] hover:border-[#cd9834] p-4 flex flex-col items-center justify-between cursor-pointer transition-all duration-300 hover:shadow-md group"
+              >
+                <div className="w-full h-40 sm:h-48 flex items-center justify-center overflow-hidden">
                   <img
-                    src="/assets/peacock_gold.jpg"
-                    alt="Raw Diamond Framework"
-                    className="w-full h-full object-cover"
+                    src={item.src}
+                    alt={item.title}
+                    className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
                   />
                 </div>
-                <div>
-                  <span className="text-[10px] font-semibold uppercase tracking-wider text-[#cd9834] block">
-                    STAGE 1: PRECISION GEM SETTING
+                <div className="w-full text-center pt-2 border-t border-[#f6f5f4]">
+                  <span className="text-xs font-medium text-[#222222] truncate block group-hover:text-[#cd9834] transition-colors">
+                    {item.title}
                   </span>
-                  <h4 className="font-headline text-base font-medium text-[#222222]">
-                    Chased 22K Gold Peacock Core
-                  </h4>
-                  <p className="text-xs text-[#6f6f6d] mt-1">
-                    Faceted pavé mountings cast and diamond-checked before coloration.
-                  </p>
                 </div>
               </div>
-
-              <div className="bg-white p-4 rounded-2xl border border-[#cd9834] flex flex-col justify-between">
-                <div className="aspect-[4/3] rounded-xl overflow-hidden bg-[#f6f5f4] mb-3">
-                  <img
-                    src="/assets/peacock_enamel.jpg"
-                    alt="Finished Vitreous Enamel Peacock"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div>
-                  <span className="text-[10px] font-semibold uppercase tracking-wider text-[#cd9834] block">
-                    STAGE 2: IMPERIAL MEENAKARI
-                  </span>
-                  <h4 className="font-headline text-base font-medium text-[#222222]">
-                    High-Fire Royal Cobalt Enamel
-                  </h4>
-                  <p className="text-xs text-[#6f6f6d] mt-1">
-                    Vivid jewel tones fused at high temperatures with 24K mirror-gloss edges.
-                  </p>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
