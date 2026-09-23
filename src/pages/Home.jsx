@@ -118,7 +118,7 @@ export default function Home({ setActivePage, onSelectOrnament }) {
       </section>
 
       {/* 2. Continuous Moving Marquee of Atelier Collections */}
-      <section className="bg-[#faf9f8] py-14 sm:py-16 border-b border-[#f0f0f0] overflow-hidden">
+      <section className="bg-white py-12 sm:py-16 border-b border-[#f0f0f0] overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8 text-center">
           <span className="text-xs font-semibold uppercase tracking-widest text-[#cd9834] block mb-2">
             MASTER ATELIER SHOWCASE
@@ -134,10 +134,10 @@ export default function Home({ setActivePage, onSelectOrnament }) {
         {/* Continuous Moving Marquee */}
         <div className="relative w-full overflow-hidden">
           {/* Subtle gradient fades at left and right */}
-          <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-r from-[#faf9f8] to-transparent z-10 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-l from-[#faf9f8] to-transparent z-10 pointer-events-none" />
+          <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
 
-          <div className="animate-marquee flex gap-6 items-center py-4">
+          <div className="animate-marquee flex gap-10 sm:gap-14 md:gap-16 items-center py-4">
             {[...MARQUEE_IMAGES, ...MARQUEE_IMAGES].map((item, idx) => (
               <div
                 key={idx}
@@ -145,21 +145,15 @@ export default function Home({ setActivePage, onSelectOrnament }) {
                   setActivePage('collection');
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
-                className="w-56 h-56 sm:w-64 sm:h-64 flex-shrink-0 bg-white rounded-2xl border border-[#f0f0f0] hover:border-[#cd9834] p-4 flex flex-col items-center justify-between cursor-pointer transition-all duration-300 hover:shadow-md group"
+                className="flex-shrink-0 cursor-pointer flex items-center justify-center py-2"
               >
-                <div className="w-full h-40 sm:h-48 flex items-center justify-center overflow-hidden">
-                  <img
-                    src={item.src}
-                    alt={item.title}
-                    className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-500"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="w-full text-center pt-2 border-t border-[#f6f5f4]">
-                  <span className="text-xs font-medium text-[#222222] truncate block group-hover:text-[#cd9834] transition-colors">
-                    {item.title}
-                  </span>
-                </div>
+                <img
+                  src={item.src}
+                  alt={item.title}
+                  className="h-36 sm:h-44 md:h-52 w-auto max-w-[220px] sm:max-w-[280px] object-contain select-none"
+                  loading="lazy"
+                  draggable={false}
+                />
               </div>
             ))}
           </div>
