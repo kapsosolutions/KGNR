@@ -1,0 +1,134 @@
+@import "tailwindcss";
+
+@theme {
+  --font-headline: "Outfit", Arial, sans-serif;
+  --font-text: "Inter", Arial, sans-serif;
+
+  --color-antique-gold: #cd9834;
+  --color-gold-hover: #b88528;
+  --color-ink: #222222;
+  --color-ink-secondary: #333333;
+  --color-ink-muted: #6f6f6d;
+  --color-canvas: #f6f5f4;
+  --color-canvas-white: #ffffff;
+  --color-canvas-dark: #000000;
+  --color-hairline: #f0f0f0;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-pill: 100px;
+}
+
+:root {
+  --gb-spacing-4: 4px;
+  --gb-spacing-8: 8px;
+  --gb-spacing-12: 12px;
+  --gb-spacing-16: 16px;
+  --gb-spacing-24: 24px;
+  --gb-spacing-32: 32px;
+  --gb-spacing-48: 48px;
+  --gb-spacing-64: 64px;
+  --gb-spacing-96: 96px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", Arial, sans-serif;
+  color: #333333;
+  background-color: #ffffff;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-headline {
+  font-family: "Outfit", Arial, sans-serif;
+}
+
+/* Buick vehicle-card style with 16px radius, no shadow, gold border hover */
+.buick-card {
+  background-color: #ffffff;
+  border-radius: 16px;
+  border: 1px solid #f0f0f0;
+  padding: 16px 16px 20px;
+  transition: border-color 0.25s ease, transform 0.2s ease;
+}
+
+.buick-card:hover {
+  border-color: #cd9834;
+}
+
+/* Buick pill button with 100px radius & 1px tracked text */
+.buick-pill-primary {
+  background-color: #f6f5f4;
+  color: #222222;
+  border-radius: 100px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  padding: 14px 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+  font-size: 15px;
+}
+
+.buick-pill-primary:hover {
+  background-color: #222222;
+  color: #ffffff;
+  border-color: #222222;
+}
+
+.buick-pill-gold-outline {
+  background-color: transparent;
+  color: #222222;
+  border-radius: 100px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  padding: 14px 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid #cd9834;
+  transition: all 0.2s ease;
+  font-size: 15px;
+}
+
+.buick-pill-gold-outline:hover {
+  background-color: #cd9834;
+  color: #ffffff;
+}
+
+.buick-pill-dark {
+  background-color: #222222;
+  color: #ffffff;
+  border-radius: 100px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  padding: 14px 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid #222222;
+  transition: all 0.2s ease;
+  font-size: 15px;
+}
+
+.buick-pill-dark:hover {
+  background-color: #000000;
+  border-color: #cd9834;
+}
+
