@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ORNAMENTS, TESTIMONIALS, ATELIER_INFO } from '../data/ornamentsData';
+import { ORNAMENTS, ATELIER_INFO } from '../data/ornamentsData';
 import VideoShowcase from '../components/VideoShowcase';
 import WhatsAppIcon from '../components/WhatsAppIcon';
 import { Sparkles, ArrowRight, MapPin, Clock, Phone, Mail, Navigation, ShieldCheck, CheckCircle2, MessageCircle } from 'lucide-react';
@@ -203,7 +203,7 @@ export default function Home({ onSelectOrnament }) {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-16">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-0">
             {/* Left Column: Visiting Card Image (/card.png from public) */}
             <div className="lg:col-span-6 relative">
               <div className="relative rounded-2xl overflow-hidden border border-[#cd9834]/40 bg-[#faf9f8] p-3 sm:p-4 shadow-sm group">
@@ -269,92 +269,6 @@ export default function Home({ onSelectOrnament }) {
                 </a>
               </div>
             </div>
-          </div>
-
-          {/* 4 Pillars of Craftsmanship */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-10 border-t border-[#f0f0f0]">
-            <div className="bg-[#faf9f8] p-6 rounded-2xl border border-[#e8e6e3]">
-              <div className="w-9 h-9 rounded-full bg-white border border-[#cd9834]/40 flex items-center justify-center text-[#cd9834] font-semibold text-xs mb-4">
-                01
-              </div>
-              <h4 className="font-headline text-base font-medium text-[#222222] mb-2">
-                Temple Deity Mukhavatas
-              </h4>
-              <p className="text-xs text-[#6f6f6d] leading-relaxed">
-                Sacred Panchaloha idol restorations, crown kireedams, and ritual silver/gold kavachams adhering to devotional agamic purity.
-              </p>
-            </div>
-
-            <div className="bg-[#faf9f8] p-6 rounded-2xl border border-[#e8e6e3]">
-              <div className="w-9 h-9 rounded-full bg-white border border-[#cd9834]/40 flex items-center justify-center text-[#cd9834] font-semibold text-xs mb-4">
-                02
-              </div>
-              <h4 className="font-headline text-base font-medium text-[#222222] mb-2">
-                Digital Buffing &amp; Zero Loss
-              </h4>
-              <p className="text-xs text-[#6f6f6d] leading-relaxed">
-                12,000 RPM precision muslin lathes with micro-capture chemical filters ensure flawless mirror shine with zero unrecoverable gold loss.
-              </p>
-            </div>
-
-            <div className="bg-[#faf9f8] p-6 rounded-2xl border border-[#e8e6e3]">
-              <div className="w-9 h-9 rounded-full bg-white border border-[#cd9834]/40 flex items-center justify-center text-[#cd9834] font-semibold text-xs mb-4">
-                03
-              </div>
-              <h4 className="font-headline text-base font-medium text-[#222222] mb-2">
-                Vitreous Peacock Meenakari
-              </h4>
-              <p className="text-xs text-[#6f6f6d] leading-relaxed">
-                Hand-blended mineral glass enamel fired at 800°C gives temple jewellery and royal kadas lasting sapphire, ruby, and emerald luster.
-              </p>
-            </div>
-
-            <div className="bg-[#faf9f8] p-6 rounded-2xl border border-[#e8e6e3]">
-              <div className="w-9 h-9 rounded-full bg-white border border-[#cd9834]/40 flex items-center justify-center text-[#cd9834] font-semibold text-xs mb-4">
-                04
-              </div>
-              <h4 className="font-headline text-base font-medium text-[#222222] mb-2">
-                Machine Facet Cutting
-              </h4>
-              <p className="text-xs text-[#6f6f6d] leading-relaxed">
-                Diamond-flywheel CNC faceting carves light-refracting geometric prisms onto 22K bangles, necklaces, and bridal waistbelts.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 5. Client Testimonials */}
-      <section className="bg-white py-16 sm:py-20 px-4 sm:px-6 lg:px-8 border-t border-[#f0f0f0]">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center max-w-2xl mx-auto mb-14">
-            <span className="text-xs font-semibold uppercase tracking-widest text-[#cd9834] block mb-2">
-              CLIENT TESTIMONIALS
-            </span>
-            <h2 className="font-headline text-3xl font-light text-[#222222]">
-              Words from Patrons &amp; Jewellers
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {TESTIMONIALS.map((t, idx) => (
-              <div
-                key={idx}
-                className="buick-card bg-[#faf9f8] flex flex-col justify-between p-6"
-              >
-                <div>
-                  <div className="text-2xl text-[#cd9834] font-serif mb-3 leading-none">“</div>
-                  <p className="text-sm text-[#333333] leading-relaxed mb-6 font-normal italic">
-                    {t.quote}
-                  </p>
-                </div>
-                <div className="pt-4 border-t border-[#f0f0f0]">
-                  <div className="font-headline text-base font-medium text-[#222222]">{t.author}</div>
-                  <div className="text-xs text-[#6f6f6d]">{t.location}</div>
-                  <div className="text-[11px] text-[#cd9834] font-medium mt-1">{t.tag}</div>
-                </div>
-              </div>
-            ))}
           </div>
         </div>
       </section>
