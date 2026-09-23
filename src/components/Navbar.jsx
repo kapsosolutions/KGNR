@@ -28,7 +28,9 @@ export default function Navbar({ activePage, setActivePage }) {
   };
 
   return (
-    <header className="sticky top-0 z-50 transition-all duration-300 bg-white/95 backdrop-blur-md border-b border-[#f0f0f0] shadow-sm">
+    <header className={`sticky top-0 z-50 transition-all duration-300 bg-white ${
+      isScrolled ? 'border-b border-[#f0f0f0] shadow-sm' : 'border-b-0 shadow-none'
+    }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20 gap-4">
           {/* Brand Logo & Name */}
