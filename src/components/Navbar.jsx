@@ -1,30 +1,56 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, ChevronRight } from 'lucide-react';
 
-export default function Navbar({ activePage, setActivePage }) {
+export default function Navbar({ activeSection = 'home', setActiveSection }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [currentSection, setCurrentSection] = useState(activeSection);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 30);
+
+      // Scrollspy detection
+      const sections = ['home', 'collection', 'about', 'contact'];
+      const scrollPosition = window.scrollY + 120;
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const id = sections[i];
+        const el = document.getElementById(id);
+        if (el && el.offsetTop <= scrollPosition) {
+          setCurrentSection(id);
+          if (setActiveSection) setActiveSection(id);
+          break;
+        }
+      }
     };
-    window.addEventListener('scroll', handleScroll);
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [setActiveSection]);
 
   const navLinks = [
     { id: 'home', label: 'Home' },
     { id: 'collection', label: 'Collection' },
-    { id: 'services', label: 'Digital Finishing' },
     { id: 'about', label: 'About Atelier' },
     { id: 'contact', label: 'Contact & Visit' },
   ];
 
   const handleNav = (id) => {
-    setActivePage(id);
+    setCurrentSection(id);
+    if (setActiveSection) setActiveSection(id);
     setMobileMenuOpen(false);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    if (id === 'home') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      const el = document.getElementById(id);
+      if (el) {
+        const yOffset = -70; // offset for sticky navbar
+        const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
+    }
   };
 
   return (
@@ -61,17 +87,17 @@ export default function Navbar({ activePage, setActivePage }) {
           </button>
 
           {/* Desktop Navigation Links - Single Line */}
-          <nav className="hidden lg:flex items-center space-x-2 xl:space-x-4 flex-shrink-0">
+          <nav className="hidden lg:flex items-center space-x-2 xl:space-x-5 flex-shrink-0">
             {navLinks.map((link) => {
-              const isActive = activePage === link.id;
+              const isActive = (currentSection || activeSection) === link.id;
               return (
                 <button
                   key={link.id}
                   onClick={() => handleNav(link.id)}
-                  className={`whitespace-nowrap px-3.5 xl:px-4 py-2 text-[14px] xl:text-[15px] font-normal transition-all relative ${
+                  className={`whitespace-nowrap px-3.5 xl:px-4 py-2 text-[14px] xl:text-[15px] transition-all relative ${
                     isActive
                       ? 'text-[#222222] font-semibold'
-                      : 'text-[#444444] hover:text-[#cd9834]'
+                      : 'text-[#444444] font-normal hover:text-[#cd9834]'
                   }`}
                 >
                   {link.label}
@@ -110,7 +136,7 @@ export default function Navbar({ activePage, setActivePage }) {
       {mobileMenuOpen && (
         <div className="lg:hidden bg-white border-b border-[#f0f0f0] px-4 pt-2 pb-6 space-y-2">
           {navLinks.map((link) => {
-            const isActive = activePage === link.id;
+            const isActive = (currentSection || activeSection) === link.id;
             return (
               <button
                 key={link.id}

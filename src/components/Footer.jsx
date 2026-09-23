@@ -38,99 +38,126 @@ export default function Footer({ setActivePage }) {
             </div>
           </div>
 
-          {/* Column 2: Master Collections */}
+          {/* Column 2: Quick Navigation */}
           <div>
             <h3 className="font-headline text-base font-normal tracking-wider text-white uppercase mb-4 border-b border-[#cd9834]/30 pb-2">
-              Curated Collections
+              Explore Atelier
             </h3>
             <ul className="space-y-2.5 text-[14px] text-[#a0a09e]">
               <li>
                 <button 
-                  onClick={() => { setActivePage('collection'); window.scrollTo(0,0); }}
+                  onClick={scrollToTop}
                   className="hover:text-[#cd9834] transition-colors text-left"
                 >
-                  Sacred Temple Mukhavatas &amp; Idols
+                  Home Showcase
                 </button>
               </li>
               <li>
                 <button 
-                  onClick={() => { setActivePage('collection'); window.scrollTo(0,0); }}
+                  onClick={() => {
+                    const el = document.getElementById('collection');
+                    if (el) el.scrollIntoView({ behavior: 'smooth' });
+                  }}
                   className="hover:text-[#cd9834] transition-colors text-left"
                 >
-                  Sri Ganesha Royal Ruby Haar
+                  Signature Vault Collections
                 </button>
               </li>
               <li>
                 <button 
-                  onClick={() => { setActivePage('collection'); window.scrollTo(0,0); }}
+                  onClick={() => {
+                    const el = document.getElementById('about');
+                    if (el) el.scrollIntoView({ behavior: 'smooth' });
+                  }}
                   className="hover:text-[#cd9834] transition-colors text-left"
                 >
-                  Tirupati Balaji Prabhavali Rings
+                  Master Artisan &amp; About Legacy
                 </button>
               </li>
               <li>
                 <button 
-                  onClick={() => { setActivePage('collection'); window.scrollTo(0,0); }}
+                  onClick={() => {
+                    const el = document.getElementById('contact');
+                    if (el) el.scrollIntoView({ behavior: 'smooth' });
+                  }}
                   className="hover:text-[#cd9834] transition-colors text-left"
                 >
-                  Royal Peacock Vitreous Enamel
+                  Chinna Bazaar Workshop Visit
                 </button>
               </li>
               <li>
                 <button 
-                  onClick={() => { setActivePage('collection'); window.scrollTo(0,0); }}
+                  onClick={() => {
+                    const el = document.getElementById('contact');
+                    if (el) el.scrollIntoView({ behavior: 'smooth' });
+                  }}
                   className="hover:text-[#cd9834] transition-colors text-left"
                 >
-                  Heritage Nizam Filigree Bangles
+                  Consult Artisan
                 </button>
               </li>
             </ul>
           </div>
 
-          {/* Column 3: Finishing Services */}
+          {/* Column 3: Atelier Legacy & Craft */}
           <div>
             <h3 className="font-headline text-base font-normal tracking-wider text-white uppercase mb-4 border-b border-[#cd9834]/30 pb-2">
-              Atelier Services
+              Atelier Standards
             </h3>
             <ul className="space-y-2.5 text-[14px] text-[#a0a09e]">
               <li>
                 <button 
-                  onClick={() => { setActivePage('services'); window.scrollTo(0,0); }}
+                  onClick={() => {
+                    const el = document.getElementById('about');
+                    if (el) el.scrollIntoView({ behavior: 'smooth' });
+                  }}
                   className="hover:text-[#cd9834] transition-colors text-left"
                 >
-                  Gold &amp; Silver Polish Works (Ultrasonic)
+                  Zero Gold Loss Digital Buffing
                 </button>
               </li>
               <li>
                 <button 
-                  onClick={() => { setActivePage('services'); window.scrollTo(0,0); }}
+                  onClick={() => {
+                    const el = document.getElementById('about');
+                    if (el) el.scrollIntoView({ behavior: 'smooth' });
+                  }}
                   className="hover:text-[#cd9834] transition-colors text-left"
                 >
-                  Platinum Polish &amp; Rhodium Plating
+                  Sacred Temple Deity Mukhavatas
                 </button>
               </li>
               <li>
                 <button 
-                  onClick={() => { setActivePage('services'); window.scrollTo(0,0); }}
+                  onClick={() => {
+                    const el = document.getElementById('about');
+                    if (el) el.scrollIntoView({ behavior: 'smooth' });
+                  }}
                   className="hover:text-[#cd9834] transition-colors text-left"
                 >
-                  Enamel Colours &amp; Imperial Meenakari
+                  Vitreous Mineral Meenakari Enamel
                 </button>
               </li>
               <li>
                 <button 
-                  onClick={() => { setActivePage('services'); window.scrollTo(0,0); }}
+                  onClick={() => {
+                    const el = document.getElementById('about');
+                    if (el) el.scrollIntoView({ behavior: 'smooth' });
+                  }}
                   className="hover:text-[#cd9834] transition-colors text-left"
                 >
-                  Antic Colours &amp; Machine Cutting
+                  Diamond-Flywheel Machine Facets
                 </button>
               </li>
               <li>
                 <button 
-                  onClick={() => { setActivePage('services'); window.scrollTo(0,0); }}
+                  onClick={() => {
+                    const el = document.getElementById('about');
+                    if (el) el.scrollIntoView({ behavior: 'smooth' });
+                  }}
                   className="hover:text-[#cd9834] transition-colors text-left"
                 >
-                  Temple Jewellery Repair &amp; Gilding
+                  25+ Years Chinna Bazaar Legacy
                 </button>
               </li>
             </ul>
