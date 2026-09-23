@@ -11,8 +11,8 @@ export default function Home({ setActivePage, onSelectOrnament }) {
 
   return (
     <div className="space-y-0">
-      {/* 1. Solid White Luxury Hero Section */}
-      <section className="relative bg-white py-12 lg:py-20 px-4 sm:px-6 lg:px-8 border-b border-[#f0f0f0] overflow-hidden">
+      {/* 1. Solid White Luxury Hero Section (#fdfdfd) */}
+      <section className="relative bg-[#fdfdfd] py-12 lg:py-20 px-4 sm:px-6 lg:px-8 border-b border-[#f0f0f0] overflow-hidden">
         {/* Subtle royal decorative aura in the background */}
         <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[500px] h-[500px] bg-[#cd9834]/5 rounded-full blur-3xl pointer-events-none -z-0" />
 
