@@ -11,11 +11,8 @@ export default function Home({ setActivePage, onSelectOrnament }) {
 
   return (
     <div className="space-y-0">
-      {/* 1. Solid White Luxury Hero Section (#fdfdfd) */}
-      <section className="relative bg-[#fdfdfd] py-12 lg:py-20 px-4 sm:px-6 lg:px-8 border-b border-[#f0f0f0] overflow-hidden">
-        {/* Subtle royal decorative aura in the background */}
-        <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[500px] h-[500px] bg-[#cd9834]/5 rounded-full blur-3xl pointer-events-none -z-0" />
-
+      {/* 1. Solid Pure White Luxury Hero Section */}
+      <section className="relative bg-white py-12 lg:py-20 px-4 sm:px-6 lg:px-8 border-b border-[#f0f0f0] overflow-hidden">
         <div className="relative z-10 max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
             {/* Left Column: Typography, Value Props, and CTAs */}
@@ -92,23 +89,14 @@ export default function Home({ setActivePage, onSelectOrnament }) {
               </div>
             </div>
 
-            {/* Right Column: Hero Image (/hero.png from public) */}
-            <div className="lg:col-span-6 flex items-center justify-center relative">
-              <div className="relative w-full max-w-lg lg:max-w-xl group">
-                {/* Subtle gold glow behind pendant */}
-                <div className="absolute inset-0 bg-gradient-to-tr from-[#cd9834]/15 via-transparent to-[#cd9834]/10 rounded-full blur-2xl -z-10 group-hover:scale-105 transition-transform duration-700" />
-                
+            {/* Right Column: Hero Image (/hero.png from public) - Pure flat white, no shadow, no hover */}
+            <div className="lg:col-span-6 flex items-center justify-center">
+              <div className="w-full max-w-lg lg:max-w-xl">
                 <img
                   src="/hero.png"
                   alt="Sri Rama &amp; Sita Celestial Kalyanam 22K Temple Pendant"
-                  className="w-full h-auto object-contain transition-all duration-700 group-hover:scale-105 drop-shadow-xl"
+                  className="w-full h-auto object-contain"
                 />
-
-                {/* Floating Authenticity Badge */}
-                <div className="absolute -bottom-3 right-4 sm:right-8 bg-white/95 backdrop-blur-md px-4 py-2 rounded-full border border-[#cd9834]/40 shadow-md text-xs text-[#222222] font-medium flex items-center gap-2">
-                  <Sparkles className="w-3.5 h-3.5 text-[#cd9834]" />
-                  <span>22K Celestial Temple Masterpiece</span>
-                </div>
               </div>
             </div>
           </div>
