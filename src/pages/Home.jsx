@@ -1,6 +1,5 @@
-import React, { useState, useMemo } from 'react';
-import { ORNAMENTS, TESTIMONIALS, ATELIER_INFO, CATEGORIES } from '../data/ornamentsData';
-import OrnamentCard from '../components/OrnamentCard';
+import React, { useState } from 'react';
+import { ORNAMENTS, TESTIMONIALS, ATELIER_INFO } from '../data/ornamentsData';
 import VideoShowcase from '../components/VideoShowcase';
 import WhatsAppIcon from '../components/WhatsAppIcon';
 import { Sparkles, ArrowRight, MapPin, Clock, Phone, Mail, Navigation, ShieldCheck, CheckCircle2, MessageCircle } from 'lucide-react';
@@ -20,7 +19,6 @@ const MARQUEE_IMAGES = [
 ];
 
 export default function Home({ onSelectOrnament }) {
-  const [selectedCategory, setSelectedCategory] = useState('all');
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -31,11 +29,6 @@ export default function Home({ onSelectOrnament }) {
   const [formSubmitted, setFormSubmitted] = useState(false);
 
   const primaryWhatsApp = ATELIER_INFO.phones[0].clean;
-
-  const filteredOrnaments = useMemo(() => {
-    if (selectedCategory === 'all') return ORNAMENTS;
-    return ORNAMENTS.filter((item) => item.category === selectedCategory);
-  }, [selectedCategory]);
 
   const scrollToSection = (id) => {
     if (id === 'home') {
@@ -188,58 +181,6 @@ export default function Home({ onSelectOrnament }) {
                 />
               </div>
             ))}
-          </div>
-        </div>
-
-        {/* Interactive Masterpieces Gallery Grid */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16">
-          <div className="text-center mb-8">
-            <span className="text-xs font-semibold uppercase tracking-widest text-[#cd9834] block mb-2">
-              CURATED ATELIER HIGHLIGHTS
-            </span>
-            <h3 className="font-headline text-2xl sm:text-3xl font-light text-[#222222]">
-              Iconic Hallmarked Ornaments
-            </h3>
-          </div>
-
-          {/* Category Filter Pills */}
-          <div className="flex items-center justify-center gap-2 overflow-x-auto pb-4 mb-10 no-scrollbar">
-            {CATEGORIES.map((cat) => {
-              const isActive = selectedCategory === cat.id;
-              return (
-                <button
-                  key={cat.id}
-                  onClick={() => setSelectedCategory(cat.id)}
-                  className={`px-5 py-2 rounded-full text-xs uppercase tracking-wider whitespace-nowrap transition-all ${
-                    isActive
-                      ? 'bg-[#222222] text-white border border-[#222222]'
-                      : 'bg-[#faf9f8] text-[#444444] border border-[#e8e6e3] hover:border-[#cd9834]'
-                  }`}
-                >
-                  {cat.label}
-                </button>
-              );
-            })}
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredOrnaments.slice(0, 6).map((ornament) => (
-              <OrnamentCard
-                key={ornament.id}
-                ornament={ornament}
-                onSelect={onSelectOrnament}
-              />
-            ))}
-          </div>
-
-          <div className="text-center mt-12">
-            <button
-              onClick={() => scrollToSection('contact')}
-              className="buick-pill-dark text-xs uppercase tracking-wider py-3.5 px-8 inline-flex items-center gap-2"
-            >
-              <span>Commission a Custom Masterpiece</span>
-              <ArrowRight className="w-4 h-4 text-[#cd9834]" />
-            </button>
           </div>
         </div>
       </section>
