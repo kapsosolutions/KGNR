@@ -406,10 +406,6 @@ export default function Home({ setActivePage, onSelectOrnament }) {
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
               ></iframe>
-              <div className="absolute bottom-3 left-3 right-3 sm:right-auto bg-white/95 backdrop-blur-sm px-4 py-2 rounded-xl border border-[#cd9834]/40 shadow-md text-[11px] text-[#222222] flex items-center gap-2">
-                <MapPin className="w-4 h-4 text-[#cd9834] flex-shrink-0" />
-                <span><strong>KGN.R Workshop</strong> • Korada St, Chinna Bazaar, Nellore</span>
-              </div>
             </div>
           </div>
         </div>
