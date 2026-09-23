@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import GoldRateBar from './components/GoldRateBar';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -16,10 +15,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen flex flex-col bg-white text-[#333333] font-sans selection:bg-[#cd9834]/20 selection:text-[#cd9834] relative">
-      {/* 1. Live Precious Metal Rate Ticker Bar */}
-      <GoldRateBar />
-
-      {/* 2. Buick Top Navigation */}
+      {/* 1. Buick Top Navigation */}
       <Navbar activePage={activePage} setActivePage={setActivePage} />
 
       {/* 3. Main Page Routing Container */}
