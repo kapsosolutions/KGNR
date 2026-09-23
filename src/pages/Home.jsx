@@ -11,89 +11,105 @@ export default function Home({ setActivePage, onSelectOrnament }) {
 
   return (
     <div className="space-y-0">
-      {/* 1. Full-Bleed Luxury Hero Section with Vibrant Visible Jewelry Backdrop */}
-      <section className="relative -mt-20 pt-20 min-h-screen flex items-center justify-center bg-[#111111] overflow-hidden">
-        {/* Full-Bleed Photography Canvas with Complete Hero Overlay */}
-        <div className="absolute inset-0 z-0">
-          <img
-            src="/assets/ganesha_haar.jpg"
-            alt="Lord Ganesha Temple Ruby Haar"
-            className="w-full h-full object-cover object-center filter brightness-105 contrast-105"
-          />
-          {/* Complete hero overlay with balanced opacity: dark enough for crisp text, transparent enough to see the gold jewelry */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/55 to-black/60" />
-        </div>
+      {/* 1. Solid White Luxury Hero Section */}
+      <section className="relative bg-white py-12 lg:py-20 px-4 sm:px-6 lg:px-8 border-b border-[#f0f0f0] overflow-hidden">
+        {/* Subtle royal decorative aura in the background */}
+        <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[500px] h-[500px] bg-[#cd9834]/5 rounded-full blur-3xl pointer-events-none -z-0" />
 
-        {/* Clean Full-Bleed Content (No glass box) */}
-        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-24 sm:py-32">
-          {/* Antique Gold Whispered Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#cd9834]/60 bg-black/50 backdrop-blur-sm mb-6">
-            <Sparkles className="w-3.5 h-3.5 text-[#cd9834]" />
-            <span className="text-xs uppercase tracking-widest text-[#cd9834] font-medium">
-              EST. 2000 • NELLORE CHINNA BAZAAR
-            </span>
-          </div>
-
-          {/* Buick Headline 56px / weight 500 */}
-          <h1 className="font-headline text-4xl sm:text-6xl lg:text-7xl font-light tracking-tight text-white leading-tight mb-6 drop-shadow-md">
-            The Sacred Whisper of <br className="hidden sm:inline" />
-            <span className="font-normal text-white">Pure Gold &amp; Divine Craft</span>
-          </h1>
-
-          {/* Lead body text */}
-          <p className="max-w-2xl mx-auto text-base sm:text-xl text-[#f3f1ed] font-normal leading-relaxed mb-10 drop-shadow">
-            KGN.R Platinum, Gold &amp; Silver Digital Finishing Works. South India’s sanctuary for temple deity mukhavatas, bespoke 22K heirlooms, and imperial meenakari enamel.
-          </p>
-
-          {/* Pill CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <button
-              onClick={() => {
-                setActivePage('collection');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }}
-              className="buick-pill-primary text-xs uppercase tracking-wider w-full sm:w-auto shadow-lg hover:scale-105 transition-transform"
-            >
-              <span>Explore Master Collection</span>
-              <ArrowRight className="w-4 h-4 text-[#cd9834]" />
-            </button>
-
-            <button
-              onClick={() => {
-                setActivePage('contact');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }}
-              className="buick-pill-gold-outline text-xs uppercase tracking-wider text-white border-[#cd9834] bg-black/40 hover:bg-[#cd9834] hover:text-black w-full sm:w-auto transition-all"
-            >
-              <span>Custom Atelier Commission</span>
-            </button>
-          </div>
-
-          {/* Key Guarantees Strip */}
-          <div className="mt-16 pt-8 border-t border-white/15 grid grid-cols-2 md:grid-cols-4 gap-6 text-left">
-            <div>
-              <div className="text-[#cd9834] text-xs uppercase font-medium tracking-widest mb-1">
-                Zero Gold Loss
+        <div className="relative z-10 max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+            {/* Left Column: Typography, Value Props, and CTAs */}
+            <div className="lg:col-span-6 space-y-6 text-left">
+              {/* Antique Gold Whispered Badge */}
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#cd9834]/40 bg-[#faf9f8]">
+                <Sparkles className="w-3.5 h-3.5 text-[#cd9834]" />
+                <span className="text-xs uppercase tracking-widest text-[#cd9834] font-semibold">
+                  EST. 2000 • NELLORE CHINNA BAZAAR
+                </span>
               </div>
-              <p className="text-xs text-[#dcdad6]">Digital ultrasonic buffing technology</p>
+
+              {/* Buick Headline 56px / weight 300 & 500 in Charcoal #222222 */}
+              <h1 className="font-headline text-4xl sm:text-5xl lg:text-6xl font-light tracking-tight text-[#222222] leading-[1.12]">
+                The Sacred Whisper of <br className="hidden sm:inline" />
+                <span className="font-normal text-[#222222]">Pure Gold &amp; Divine Craft</span>
+              </h1>
+
+              {/* Lead Body Text in Buick Charcoal */}
+              <p className="text-base sm:text-lg text-[#555555] font-normal leading-relaxed max-w-xl">
+                KGN.R Platinum, Gold &amp; Silver Digital Finishing Works. South India’s sanctuary for temple deity mukhavatas, bespoke 22K heirlooms, and imperial meenakari enamel.
+              </p>
+
+              {/* Pill CTA Buttons */}
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+                <button
+                  onClick={() => {
+                    setActivePage('collection');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
+                  className="buick-pill-dark text-xs uppercase tracking-wider py-3.5 px-8 flex items-center justify-center gap-2 shadow-sm hover:scale-105 transition-transform"
+                >
+                  <span>Explore Master Collection</span>
+                  <ArrowRight className="w-4 h-4 text-[#cd9834]" />
+                </button>
+
+                <button
+                  onClick={() => {
+                    setActivePage('contact');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
+                  className="buick-pill-gold-outline text-xs uppercase tracking-wider text-[#222222] border-[#cd9834] hover:bg-[#cd9834] hover:text-white py-3.5 px-8 transition-all flex items-center justify-center"
+                >
+                  <span>Custom Atelier Commission</span>
+                </button>
+              </div>
+
+              {/* Key Guarantees Strip */}
+              <div className="pt-8 mt-4 border-t border-[#f0f0f0] grid grid-cols-2 sm:grid-cols-4 gap-4 text-left">
+                <div>
+                  <div className="text-[#cd9834] text-xs uppercase font-semibold tracking-wider mb-1">
+                    Zero Gold Loss
+                  </div>
+                  <p className="text-xs text-[#6f6f6d] leading-tight">Digital ultrasonic buffing</p>
+                </div>
+                <div>
+                  <div className="text-[#cd9834] text-xs uppercase font-semibold tracking-wider mb-1">
+                    100% BIS 916
+                  </div>
+                  <p className="text-xs text-[#6f6f6d] leading-tight">Complete HUID hallmarking</p>
+                </div>
+                <div>
+                  <div className="text-[#cd9834] text-xs uppercase font-semibold tracking-wider mb-1">
+                    Temple Guild
+                  </div>
+                  <p className="text-xs text-[#6f6f6d] leading-tight">Sacred idol restoration</p>
+                </div>
+                <div>
+                  <div className="text-[#cd9834] text-xs uppercase font-semibold tracking-wider mb-1">
+                    25+ Years
+                  </div>
+                  <p className="text-xs text-[#6f6f6d] leading-tight">Under Master Rabbani</p>
+                </div>
+              </div>
             </div>
-            <div>
-              <div className="text-[#cd9834] text-xs uppercase font-medium tracking-widest mb-1">
-                100% BIS 916
+
+            {/* Right Column: Hero Image (/hero.png from public) */}
+            <div className="lg:col-span-6 flex items-center justify-center relative">
+              <div className="relative w-full max-w-lg lg:max-w-xl group">
+                {/* Subtle gold glow behind pendant */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-[#cd9834]/15 via-transparent to-[#cd9834]/10 rounded-full blur-2xl -z-10 group-hover:scale-105 transition-transform duration-700" />
+                
+                <img
+                  src="/hero.png"
+                  alt="Sri Rama &amp; Sita Celestial Kalyanam 22K Temple Pendant"
+                  className="w-full h-auto object-contain transition-all duration-700 group-hover:scale-105 drop-shadow-xl"
+                />
+
+                {/* Floating Authenticity Badge */}
+                <div className="absolute -bottom-3 right-4 sm:right-8 bg-white/95 backdrop-blur-md px-4 py-2 rounded-full border border-[#cd9834]/40 shadow-md text-xs text-[#222222] font-medium flex items-center gap-2">
+                  <Sparkles className="w-3.5 h-3.5 text-[#cd9834]" />
+                  <span>22K Celestial Temple Masterpiece</span>
+                </div>
               </div>
-              <p className="text-xs text-[#dcdad6]">Complete HUID purity hallmarking</p>
-            </div>
-            <div>
-              <div className="text-[#cd9834] text-xs uppercase font-medium tracking-widest mb-1">
-                Temple Guild
-              </div>
-              <p className="text-xs text-[#dcdad6]">Revered sacred idol restoration</p>
-            </div>
-            <div>
-              <div className="text-[#cd9834] text-xs uppercase font-medium tracking-widest mb-1">
-                25+ Years Legacy
-              </div>
-              <p className="text-xs text-[#dcdad6]">Under Master Rabbani Shaik</p>
             </div>
           </div>
         </div>
