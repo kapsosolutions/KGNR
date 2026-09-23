@@ -8,8 +8,22 @@ export default function Footer({ setActivePage }) {
   };
 
   return (
-    <footer className="bg-[#222222] text-[#f6f5f4] pt-16 pb-12 border-t border-[#333333]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <footer className="relative bg-[#222222] text-[#f6f5f4] pt-16 pb-12 border-t border-[#333333] overflow-hidden">
+      {/* PC / Desktop Footer Background SVG */}
+      <div 
+        className="hidden md:block absolute inset-0 w-full h-full pointer-events-none bg-bottom bg-cover bg-no-repeat opacity-30 z-0"
+        style={{ backgroundImage: "url('/footer_pc.svg')" }}
+        aria-hidden="true"
+      />
+
+      {/* Mobile Footer Background SVG */}
+      <div 
+        className="block md:hidden absolute inset-0 w-full h-full pointer-events-none bg-bottom bg-cover bg-no-repeat opacity-30 z-0"
+        style={{ backgroundImage: "url('/footer_mobile.svg')" }}
+        aria-hidden="true"
+      />
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main 4-Column Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-[#333333]">
           {/* Column 1: Brand Atelier & Credentials */}
