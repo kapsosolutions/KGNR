@@ -134,21 +134,36 @@ body {
 
 @keyframes marquee {
   0% {
-    transform: translateX(0%);
+    transform: translate3d(0, 0, 0);
   }
   100% {
-    transform: translateX(-50%);
+    transform: translate3d(-50%, 0, 0);
   }
 }
 
 .animate-marquee {
   display: flex;
   width: max-content;
-  animation: marquee 30s linear infinite;
+  animation: marquee 14s linear infinite;
+  will-change: transform;
 }
 
-.animate-marquee:hover {
-  animation-play-state: paused;
+@media (hover: hover) {
+  .animate-marquee:hover {
+    animation-play-state: paused;
+  }
+}
+
+@media (min-width: 640px) {
+  .animate-marquee {
+    animation-duration: 20s;
+  }
+}
+
+@media (min-width: 1024px) {
+  .animate-marquee {
+    animation-duration: 26s;
+  }
 }
 
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ORNAMENTS, ATELIER_INFO } from '../data/ornamentsData';
+import { ATELIER_INFO } from '../data/ornamentsData';
 import VideoShowcase from '../components/VideoShowcase';
 import WhatsAppIcon from '../components/WhatsAppIcon';
 import { Sparkles, ArrowRight, MapPin, Clock, Phone, Mail, Navigation, ShieldCheck, CheckCircle2, MessageCircle } from 'lucide-react';
@@ -18,7 +18,7 @@ const MARQUEE_IMAGES = [
   { id: 11, src: '/collections/11.png', title: 'Imperial Girdle & Kada' },
 ];
 
-export default function Home({ onSelectOrnament }) {
+export default function Home() {
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -161,21 +161,16 @@ export default function Home({ onSelectOrnament }) {
           <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
           <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
 
-          <div className="animate-marquee flex gap-10 sm:gap-14 md:gap-16 items-center py-4">
+          <div className="animate-marquee flex gap-6 sm:gap-12 md:gap-16 items-center py-4">
             {[...MARQUEE_IMAGES, ...MARQUEE_IMAGES].map((item, idx) => (
               <div
                 key={idx}
-                onClick={() => {
-                  const matched = ORNAMENTS.find((o) => o.image.includes(`${item.id}.png`)) || ORNAMENTS[0];
-                  if (onSelectOrnament) onSelectOrnament(matched);
-                }}
-                className="flex-shrink-0 cursor-pointer flex items-center justify-center py-2"
-                title={item.title}
+                className="flex-shrink-0 flex items-center justify-center py-2 select-none"
               >
                 <img
                   src={item.src}
                   alt={item.title}
-                  className="h-36 sm:h-44 md:h-52 w-auto max-w-[220px] sm:max-w-[280px] object-contain select-none transition-transform duration-300 hover:scale-105"
+                  className="h-28 sm:h-44 md:h-52 w-auto max-w-[180px] sm:max-w-[280px] object-contain select-none pointer-events-none"
                   loading="lazy"
                   draggable={false}
                 />
