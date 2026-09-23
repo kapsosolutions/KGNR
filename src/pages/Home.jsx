@@ -1,10 +1,9 @@
 import React from 'react';
-import { ORNAMENTS, SERVICES, TESTIMONIALS, ATELIER_INFO } from '../data/ornamentsData';
+import { ORNAMENTS, TESTIMONIALS, ATELIER_INFO } from '../data/ornamentsData';
 import OrnamentCard from '../components/OrnamentCard';
 import VideoShowcase from '../components/VideoShowcase';
-import EstimatorWidget from '../components/EstimatorWidget';
 import WhatsAppIcon from '../components/WhatsAppIcon';
-import { Sparkles, ShieldCheck, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { Sparkles, ArrowRight, MapPin, Clock, Phone, Navigation } from 'lucide-react';
 
 export default function Home({ setActivePage, onSelectOrnament }) {
   const featuredOrnaments = ORNAMENTS.filter((item) => item.featured).slice(0, 3);
@@ -219,79 +218,7 @@ export default function Home({ setActivePage, onSelectOrnament }) {
       {/* 4. Video Craftsmanship Showcase */}
       <VideoShowcase />
 
-      {/* 5. 6 Digital Finishing Services */}
-      <section className="bg-white py-20 px-4 sm:px-6 lg:px-8 border-b border-[#f0f0f0]">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-xs font-semibold uppercase tracking-widest text-[#cd9834] block mb-2">
-              KGN.R FINISHING CAPABILITIES
-            </span>
-            <h2 className="font-headline text-3xl sm:text-4xl font-light text-[#222222] mb-4">
-              Master Finishing &amp; Digital Polish Services
-            </h2>
-            <p className="text-[#6f6f6d] text-sm sm:text-base font-normal leading-relaxed">
-              Equipped with computerized high-precision machinery, ultrasonic baths, and generational bench goldsmiths to serve discerning retail clients and commercial jewellers.
-            </p>
-          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {SERVICES.map((service) => (
-              <div
-                key={service.id}
-                className="buick-card flex flex-col justify-between hover:border-[#cd9834] transition-all bg-[#faf9f8]"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="text-[10px] font-semibold uppercase tracking-wider text-[#cd9834] px-2 py-0.5 rounded-full border border-[#cd9834]/40">
-                      {service.badge}
-                    </span>
-                    <span className="text-xs text-[#6f6f6d]">{service.turnaround}</span>
-                  </div>
-
-                  <h3 className="font-headline text-xl font-medium text-[#222222] mb-1">
-                    {service.title}
-                  </h3>
-                  <div className="text-xs text-[#cd9834] font-medium mb-3">
-                    {service.subtitle}
-                  </div>
-
-                  <p className="text-xs text-[#6f6f6d] leading-relaxed mb-4">
-                    {service.description}
-                  </p>
-
-                  <ul className="space-y-1.5 border-t border-[#f0f0f0] pt-3 text-xs text-[#333333]">
-                    {service.specs.map((sp, idx) => (
-                      <li key={idx} className="flex items-start gap-1.5">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-[#cd9834] flex-shrink-0 mt-0.5" />
-                        <span className="text-[11px] leading-tight">{sp}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="pt-6 mt-4 border-t border-[#f0f0f0]">
-                  <a
-                    href={`https://wa.me/${primaryWhatsApp}?text=Hello%20KGN.R%2C%20I%20am%20inquiring%20about%20your%20service%3A%20${encodeURIComponent(service.title)}.`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-xs font-semibold text-[#cd9834] hover:text-[#b88528] flex items-center gap-1 uppercase tracking-wider"
-                  >
-                    <span>Request Service Quote</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </a>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 6. Live Bullion Estimator */}
-      <section className="bg-white py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <EstimatorWidget />
-        </div>
-      </section>
 
       {/* 7. Official Credentials */}
       <section className="bg-[#f6f5f4] py-16 px-4 sm:px-6 lg:px-8 border-y border-[#f0f0f0]">
@@ -385,6 +312,105 @@ export default function Home({ setActivePage, onSelectOrnament }) {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+      {/* 6. Atelier Location & Interactive Google Map (Above Footer) */}
+      <section className="bg-[#f6f5f4] py-20 px-4 sm:px-6 lg:px-8 border-t border-[#e8e6e3]">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <span className="text-xs font-semibold uppercase tracking-widest text-[#cd9834] block mb-2">
+              ATELIER LOCATION &amp; WORKSHOP
+            </span>
+            <h2 className="font-headline text-3xl sm:text-4xl font-light text-[#222222] mb-4">
+              Visit KGN.R in Chinna Bazaar, Nellore
+            </h2>
+            <p className="text-[#6f6f6d] text-sm sm:text-base font-normal leading-relaxed">
+              Experience authentic generational goldsmithing, deity mukhavata restorations, and high-precision digital finishing directly at our flagship atelier.
+            </p>
+          </div>
+
+          <div className="bg-white rounded-2xl border border-[#e8e6e3] overflow-hidden shadow-sm grid grid-cols-1 lg:grid-cols-12">
+            {/* Workshop Address & Navigation Info */}
+            <div className="lg:col-span-5 p-6 sm:p-10 flex flex-col justify-between space-y-6">
+              <div className="space-y-6">
+                <div>
+                  <span className="text-[11px] font-semibold tracking-widest text-[#cd9834] uppercase block mb-2">
+                    PHYSICAL WORKSHOP ADDRESS
+                  </span>
+                  <h3 className="font-headline text-xl sm:text-2xl font-medium text-[#222222] mb-3">
+                    KGN.R Gold Finishing &amp; Designing Works
+                  </h3>
+                  <div className="flex items-start gap-3 text-xs sm:text-sm text-[#333333]">
+                    <MapPin className="w-5 h-5 text-[#cd9834] flex-shrink-0 mt-0.5" />
+                    <div>
+                      <p className="font-semibold text-[#222222]">#19/156, N, R, N, complex, Korada Street,</p>
+                      <p className="text-[#555555]">Chinna Bazaar, Nellore - 524 001,</p>
+                      <p className="text-[#555555]">Andhra Pradesh, India</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="border-t border-[#f0f0f0] pt-4 space-y-3">
+                  <div className="flex items-start gap-3 text-xs sm:text-sm text-[#333333]">
+                    <Clock className="w-4 h-4 text-[#cd9834] flex-shrink-0 mt-0.5" />
+                    <div>
+                      <span className="font-medium text-[#222222] block">Operating Hours:</span>
+                      <span className="text-[#6f6f6d]">Monday – Saturday: 10:00 AM – 9:00 PM</span><br />
+                      <span className="text-[#6f6f6d]">Sunday: 11:00 AM – 5:00 PM (By Appointment)</span>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3 text-xs sm:text-sm text-[#333333]">
+                    <Phone className="w-4 h-4 text-[#cd9834] flex-shrink-0 mt-0.5" />
+                    <div>
+                      <span className="font-medium text-[#222222] block">Direct Contact:</span>
+                      <span className="text-[#555555]">+91 94400 55996 / +91 93471 01857</span><br />
+                      <span className="text-[#555555]">Shop Desk: 095500 81300</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="pt-4 border-t border-[#f0f0f0] flex flex-col sm:flex-row gap-3">
+                <a
+                  href="https://www.google.com/maps/place/14%C2%B027'15.8%22N+79%C2%B058'45.5%22E/@14.4543889,79.9792917,643m/data=!3m2!1e3!4b1!4m4!3m3!8m2!3d14.4543889!4d79.9792917?entry=ttu&g_ep=EgoyMDI2MDkyMC4wIKXMDSoASAFQAw%3D%3D"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="buick-pill-primary text-xs uppercase tracking-wider py-3 px-5 flex items-center justify-center gap-2"
+                >
+                  <Navigation className="w-3.5 h-3.5 text-[#cd9834]" />
+                  <span>Get Directions on Google Maps</span>
+                </a>
+
+                <a
+                  href={`https://wa.me/${primaryWhatsApp}?text=Hello%20Master%20Rabbani%20Shaik%2C%20I%20would%20like%20directions%20to%20visit%20your%20workshop%20in%20Chinna%20Bazaar.`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="buick-pill-dark text-xs uppercase tracking-wider py-3 px-5 flex items-center justify-center gap-2"
+                >
+                  <WhatsAppIcon className="w-3.5 h-3.5" color="#25D366" />
+                  <span>WhatsApp Location</span>
+                </a>
+              </div>
+            </div>
+
+            {/* Embedded Interactive Map */}
+            <div className="lg:col-span-7 h-[380px] sm:h-[440px] lg:h-full min-h-[380px] relative bg-[#e8e6e3]">
+              <iframe
+                title="KGN.R Workshop Location Map"
+                src="https://maps.google.com/maps?q=14.4543889,79.9792917&t=&z=17&ie=UTF8&iwloc=&output=embed"
+                className="w-full h-full border-0 absolute inset-0"
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              ></iframe>
+              <div className="absolute bottom-3 left-3 right-3 sm:right-auto bg-white/95 backdrop-blur-sm px-4 py-2 rounded-xl border border-[#cd9834]/40 shadow-md text-[11px] text-[#222222] flex items-center gap-2">
+                <MapPin className="w-4 h-4 text-[#cd9834] flex-shrink-0" />
+                <span><strong>KGN.R Workshop</strong> • Korada St, Chinna Bazaar, Nellore</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>

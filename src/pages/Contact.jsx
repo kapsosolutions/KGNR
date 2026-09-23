@@ -148,14 +148,24 @@ export default function Contact() {
               <div className="aspect-[16/9] w-full bg-[#e8e6e3] rounded-xl flex items-center justify-center relative overflow-hidden mb-3">
                 <iframe
                   title="Nellore Chinna Bazaar Location"
-                  src="https://maps.google.com/maps?q=Chinna+Bazaar+Nellore+Andhra+Pradesh&t=&z=16&ie=UTF8&iwloc=&output=embed"
+                  src="https://maps.google.com/maps?q=14.4543889,79.9792917&t=&z=17&ie=UTF8&iwloc=&output=embed"
                   className="w-full h-full border-0"
                   loading="lazy"
                 ></iframe>
               </div>
-              <span className="text-xs text-[#6f6f6d]">
-                Located in Chinna Bazaar, Nellore — Landmark: Korada Street, NRN Complex
-              </span>
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-2 pt-1 text-xs">
+                <span className="text-[#6f6f6d] text-left">
+                  Landmark: Korada Street, NRN Complex, Chinna Bazaar
+                </span>
+                <a
+                  href="https://www.google.com/maps/place/14%C2%B027'15.8%22N+79%C2%B058'45.5%22E/@14.4543889,79.9792917,643m/data=!3m2!1e3!4b1!4m4!3m3!8m2!3d14.4543889!4d79.9792917?entry=ttu&g_ep=EgoyMDI2MDkyMC4wIKXMDSoASAFQAw%3D%3D"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#cd9834] font-medium hover:underline flex-shrink-0"
+                >
+                  Open in Google Maps &rarr;
+                </a>
+              </div>
             </div>
           </div>
 
