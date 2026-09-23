@@ -8,7 +8,7 @@ export default function Footer({ setActivePage }) {
   };
 
   return (
-    <footer className="relative bg-[#222222] text-[#f6f5f4] pt-16 pb-12 border-t border-[#333333] overflow-hidden">
+    <footer className="relative bg-black text-[#f6f5f4] pt-16 pb-12 border-t border-[#111111] overflow-hidden">
       {/* PC / Desktop Footer Background SVG */}
       <div 
         className="hidden md:block absolute inset-0 w-full h-full pointer-events-none bg-bottom bg-cover bg-no-repeat opacity-30 z-0"
@@ -25,7 +25,7 @@ export default function Footer({ setActivePage }) {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main 4-Column Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-[#333333]">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-white/10">
           {/* Column 1: Brand Atelier & Credentials */}
           <div className="space-y-4">
             <div className="flex items-center gap-3">
