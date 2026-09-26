@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ChevronRight } from 'lucide-react';
+import { Menu, X, ChevronRight, Lock } from 'lucide-react';
 
-export default function Navbar({ activeSection = 'home', setActiveSection }) {
+export default function Navbar({ activeSection = 'home', setActiveSection, currentPage = 'home', setCurrentPage }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [currentSection, setCurrentSection] = useState(activeSection);
@@ -9,6 +9,8 @@ export default function Navbar({ activeSection = 'home', setActiveSection }) {
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 30);
+
+      if (currentPage !== 'home') return;
 
       // Scrollspy detection
       const sections = ['home', 'collection', 'about', 'contact'];
@@ -27,11 +29,12 @@ export default function Navbar({ activeSection = 'home', setActiveSection }) {
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [setActiveSection]);
+  }, [setActiveSection, currentPage]);
 
   const navLinks = [
     { id: 'home', label: 'Home' },
     { id: 'collection', label: 'Collection' },
+    { id: 'videos', label: 'Videos' },
     { id: 'about', label: 'About Atelier' },
     { id: 'contact', label: 'Contact & Visit' },
   ];
@@ -40,6 +43,38 @@ export default function Navbar({ activeSection = 'home', setActiveSection }) {
     setCurrentSection(id);
     if (setActiveSection) setActiveSection(id);
     setMobileMenuOpen(false);
+
+    if (id === 'videos') {
+      if (setCurrentPage) setCurrentPage('videos');
+      window.location.hash = 'videos';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    if (id === 'admin') {
+      if (setCurrentPage) setCurrentPage('admin');
+      window.location.hash = 'admin';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    if (currentPage !== 'home') {
+      if (setCurrentPage) setCurrentPage('home');
+      window.location.hash = '';
+      setTimeout(() => {
+        if (id === 'home') {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+          const el = document.getElementById(id);
+          if (el) {
+            const yOffset = -70;
+            const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+            window.scrollTo({ top: y, behavior: 'smooth' });
+          }
+        }
+      }, 100);
+      return;
+    }
 
     if (id === 'home') {
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -109,8 +144,17 @@ export default function Navbar({ activeSection = 'home', setActiveSection }) {
             })}
           </nav>
 
-          {/* Right Action CTA (Consult Artisan button only) */}
-          <div className="hidden md:flex items-center flex-shrink-0">
+          {/* Right Action CTA (Admin & Consult Artisan) */}
+          <div className="hidden md:flex items-center gap-2.5 flex-shrink-0">
+            <button
+              onClick={() => handleNav('admin')}
+              className="px-3 py-2 text-xs uppercase tracking-wider text-[#6f6f6d] hover:text-[#cd9834] transition-colors flex items-center gap-1.5 rounded-lg border border-[#e5e3df] hover:border-[#cd9834]"
+              title="Admin Panel"
+            >
+              <Lock className="w-3 h-3 text-[#cd9834]" />
+              <span>Admin</span>
+            </button>
+
             <button
               onClick={() => handleNav('contact')}
               className="buick-pill-dark text-xs uppercase tracking-wider py-2.5 px-6 flex items-center gap-1.5 whitespace-nowrap shadow-sm hover:scale-105 transition-transform"
@@ -153,7 +197,15 @@ export default function Navbar({ activeSection = 'home', setActiveSection }) {
             );
           })}
 
-          <div className="pt-4 border-t border-[#f0f0f0]">
+          <div className="pt-3 border-t border-[#f0f0f0] space-y-2">
+            <button
+              onClick={() => handleNav('admin')}
+              className="w-full py-2.5 px-4 rounded-lg bg-[#faf9f8] border border-[#e5e3df] text-[#6f6f6d] hover:text-[#cd9834] text-xs uppercase tracking-wider flex items-center justify-center gap-2"
+            >
+              <Lock className="w-3.5 h-3.5 text-[#cd9834]" />
+              <span>Admin Portal Login</span>
+            </button>
+
             <button
               onClick={() => handleNav('contact')}
               className="w-full buick-pill-dark text-xs tracking-wider uppercase py-3 justify-center"

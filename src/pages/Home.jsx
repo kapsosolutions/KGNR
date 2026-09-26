@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ATELIER_INFO } from '../data/ornamentsData';
 import VideoShowcase from '../components/VideoShowcase';
+import YouTubeVideoSection from '../components/YouTubeVideoSection';
 import WhatsAppIcon from '../components/WhatsAppIcon';
 import { Sparkles, ArrowRight, MapPin, Clock, Phone, Mail, Navigation, ShieldCheck, CheckCircle2, MessageCircle } from 'lucide-react';
 
@@ -18,7 +19,7 @@ const MARQUEE_IMAGES = [
   { id: 11, webp: '/collections/11.webp', src: '/collections/11.png', title: 'Imperial Girdle & Kada' },
 ];
 
-export default function Home() {
+export default function Home({ setActiveSection, onNavigateToVideos }) {
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -199,6 +200,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* 2.5 Master Atelier Video Archive (3-Column YouTube Grid) */}
+      <YouTubeVideoSection onNavigateToVideos={onNavigateToVideos} />
 
       {/* 3. Video Craftsmanship Showcase */}
       <VideoShowcase />

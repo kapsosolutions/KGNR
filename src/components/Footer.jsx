@@ -2,7 +2,7 @@ import React from 'react';
 import { ATELIER_INFO } from '../data/ornamentsData';
 import { ShieldCheck, Phone, Mail, MapPin, Sparkles, MessageCircle, ArrowUp } from 'lucide-react';
 
-export default function Footer({ setActivePage }) {
+export default function Footer({ setActivePage, onNavigateToVideos, onNavigateToAdmin }) {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -80,6 +80,20 @@ export default function Footer({ setActivePage }) {
               <li>
                 <button 
                   onClick={() => {
+                    if (onNavigateToVideos) onNavigateToVideos();
+                    else {
+                      const el = document.getElementById('videos-section');
+                      if (el) el.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
+                  className="hover:text-[#cd9834] transition-colors text-left font-medium text-white/90"
+                >
+                  Atelier Video Archive (New)
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={() => {
                     const el = document.getElementById('about');
                     if (el) el.scrollIntoView({ behavior: 'smooth' });
                   }}
@@ -102,12 +116,11 @@ export default function Footer({ setActivePage }) {
               <li>
                 <button 
                   onClick={() => {
-                    const el = document.getElementById('contact');
-                    if (el) el.scrollIntoView({ behavior: 'smooth' });
+                    if (onNavigateToAdmin) onNavigateToAdmin();
                   }}
-                  className="hover:text-[#cd9834] transition-colors text-left"
+                  className="hover:text-[#cd9834] transition-colors text-left text-xs opacity-75"
                 >
-                  Consult Artisan
+                  Admin Management Portal
                 </button>
               </li>
             </ul>
