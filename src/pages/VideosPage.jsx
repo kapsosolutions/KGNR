@@ -1,16 +1,28 @@
 import React, { useState, useEffect } from 'react';
-import { Play, Search, ArrowLeft, ExternalLink, Film, Sparkles, Filter } from 'lucide-react';
+import { Play, Search, ArrowLeft, ExternalLink, Film, Sparkles, Filter, X, Maximize2 } from 'lucide-react';
 
 export default function VideosPage({ onNavigateHome, onNavigateToAdmin }) {
   const [videos, setVideos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const [playingInlineId, setPlayingInlineId] = useState(null);
   const [activeModalVideo, setActiveModalVideo] = useState(null);
 
   useEffect(() => {
     fetchVideos();
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
+
+  // Close modal on ESC key
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setActiveModalVideo(null);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
   const fetchVideos = async () => {
@@ -49,7 +61,7 @@ export default function VideosPage({ onNavigateHome, onNavigateToAdmin }) {
         <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
           <button
             onClick={onNavigateHome}
-            className="inline-flex items-center gap-2 text-xs uppercase tracking-wider text-[#6f6f6d] hover:text-[#cd9834] transition-colors font-medium"
+            className="inline-flex items-center gap-2 text-xs uppercase tracking-wider text-[#6f6f6d] hover:text-[#cd9834] transition-colors font-medium cursor-pointer"
           >
             <ArrowLeft className="w-4 h-4" />
             <span>Back to Home Atelier</span>
@@ -57,7 +69,7 @@ export default function VideosPage({ onNavigateHome, onNavigateToAdmin }) {
 
           <button
             onClick={onNavigateToAdmin}
-            className="text-xs uppercase tracking-wider text-[#cd9834] hover:text-[#222222] font-semibold border-b border-[#cd9834] pb-0.5"
+            className="text-xs uppercase tracking-wider text-[#cd9834] hover:text-[#222222] font-semibold border-b border-[#cd9834] pb-0.5 cursor-pointer"
           >
             Manage Videos in Admin Panel &rarr;
           </button>
@@ -98,7 +110,7 @@ export default function VideosPage({ onNavigateHome, onNavigateToAdmin }) {
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-all ${
+                className={`px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-all cursor-pointer ${
                   selectedCategory === cat
                     ? 'bg-[#222222] text-white shadow-sm'
                     : 'bg-[#f4f2ee] text-[#6f6f6d] hover:bg-[#e8e6e1] hover:text-[#222222]'
@@ -135,7 +147,7 @@ export default function VideosPage({ onNavigateHome, onNavigateToAdmin }) {
                 setSearchQuery('');
                 setSelectedCategory('All');
               }}
-              className="text-xs text-[#cd9834] font-medium underline"
+              className="text-xs text-[#cd9834] font-medium underline cursor-pointer"
             >
               Reset Filters
             </button>
@@ -143,49 +155,70 @@ export default function VideosPage({ onNavigateHome, onNavigateToAdmin }) {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {filteredVideos.map((vid) => {
+              const id = vid.id || vid._id;
               const videoId = vid.videoId;
               const thumbUrl = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+              const isPlayingInline = playingInlineId === id;
 
               return (
                 <div
-                  key={vid.id || vid._id}
+                  key={id}
                   className="bg-white rounded-xl border border-[#e5e3df] hover:border-[#cd9834]/60 transition-all duration-300 overflow-hidden shadow-sm hover:shadow-md flex flex-col group"
                 >
-                  {/* Video Thumbnail */}
-                  <div
-                    onClick={() => setActiveModalVideo(vid)}
-                    className="relative aspect-video bg-black overflow-hidden cursor-pointer select-none"
-                  >
-                    <img
-                      src={thumbUrl}
-                      alt={vid.title}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      loading="lazy"
-                    />
+                  {/* Video Player or Thumbnail Frame */}
+                  {isPlayingInline ? (
+                    <div className="relative aspect-video bg-black overflow-hidden">
+                      <iframe
+                        src={`https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0`}
+                        title={vid.title}
+                        className="w-full h-full border-0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      />
+                      <button
+                        onClick={() => setPlayingInlineId(null)}
+                        className="absolute top-2 right-2 z-10 bg-black/80 hover:bg-black text-white p-1.5 rounded-full text-xs shadow-lg transition-colors cursor-pointer"
+                        title="Close player"
+                      >
+                        <X className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+                  ) : (
+                    <div
+                      onClick={() => setPlayingInlineId(id)}
+                      className="relative aspect-video bg-black overflow-hidden cursor-pointer select-none group/thumb"
+                    >
+                      <img
+                        src={thumbUrl}
+                        alt={vid.title}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover/thumb:scale-105"
+                        loading="lazy"
+                      />
 
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
 
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="w-14 h-10 sm:w-16 sm:h-11 bg-red-600/90 group-hover:bg-red-600 rounded-2xl flex items-center justify-center text-white shadow-lg transition-transform group-hover:scale-110">
-                        <Play className="w-5 h-5 sm:w-6 sm:h-6 fill-white ml-0.5" />
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="w-14 h-10 sm:w-16 sm:h-11 bg-red-600/95 group-hover/thumb:bg-red-600 rounded-2xl flex items-center justify-center text-white shadow-lg transition-transform group-hover/thumb:scale-110">
+                          <Play className="w-5 h-5 sm:w-6 sm:h-6 fill-white ml-0.5" />
+                        </div>
+                      </div>
+
+                      <div className="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between pointer-events-none">
+                        <span className="text-[11px] text-white font-medium bg-black/70 backdrop-blur-sm px-2 py-0.5 rounded">
+                          {vid.category || 'Atelier'}
+                        </span>
+                        <span className="text-[10px] text-white/90 font-normal bg-black/70 backdrop-blur-sm px-2 py-0.5 rounded">
+                          Watch on YouTube
+                        </span>
                       </div>
                     </div>
-
-                    <div className="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between pointer-events-none">
-                      <span className="text-[11px] text-white/90 font-medium bg-black/60 backdrop-blur-sm px-2 py-0.5 rounded">
-                        {vid.category || 'Atelier'}
-                      </span>
-                      <span className="text-[10px] text-white/80 font-normal bg-black/60 backdrop-blur-sm px-2 py-0.5 rounded">
-                        Watch on YouTube
-                      </span>
-                    </div>
-                  </div>
+                  )}
 
                   {/* Card Content */}
                   <div className="p-5 flex-1 flex flex-col justify-between">
                     <div>
                       <h3
-                        onClick={() => setActiveModalVideo(vid)}
+                        onClick={() => setPlayingInlineId(id)}
                         className="font-headline font-semibold text-base sm:text-[17px] text-[#222222] group-hover:text-[#cd9834] transition-colors line-clamp-2 cursor-pointer mb-2"
                         title={vid.title}
                       >
@@ -197,23 +230,43 @@ export default function VideosPage({ onNavigateHome, onNavigateToAdmin }) {
                     </div>
 
                     <div className="mt-4 pt-3 border-t border-[#f2f0ec] flex items-center justify-between text-xs">
-                      <button
-                        onClick={() => setActiveModalVideo(vid)}
-                        className="text-[#cd9834] font-medium hover:underline flex items-center gap-1"
-                      >
-                        <Play className="w-3.5 h-3.5 fill-current" />
-                        <span>Play Video</span>
-                      </button>
+                      {isPlayingInline ? (
+                        <button
+                          onClick={() => setPlayingInlineId(null)}
+                          className="text-gray-500 hover:text-[#222222] font-medium flex items-center gap-1 cursor-pointer"
+                        >
+                          <X className="w-3.5 h-3.5" />
+                          <span>Close Player</span>
+                        </button>
+                      ) : (
+                        <button
+                          onClick={() => setPlayingInlineId(id)}
+                          className="text-[#cd9834] font-medium hover:underline flex items-center gap-1 cursor-pointer"
+                        >
+                          <Play className="w-3.5 h-3.5 fill-current" />
+                          <span>Play Inline</span>
+                        </button>
+                      )}
 
-                      <a
-                        href={vid.youtubeUrl || `https://www.youtube.com/watch?v=${vid.videoId}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-[#999997] hover:text-[#222222] transition-colors flex items-center gap-1"
-                      >
-                        <span>Open YouTube</span>
-                        <ExternalLink className="w-3 h-3" />
-                      </a>
+                      <div className="flex items-center gap-2.5">
+                        <button
+                          onClick={() => setActiveModalVideo(vid)}
+                          className="text-gray-500 hover:text-[#cd9834] transition-colors p-1 cursor-pointer"
+                          title="Open in focused popup"
+                        >
+                          <Maximize2 className="w-3.5 h-3.5" />
+                        </button>
+
+                        <a
+                          href={vid.youtubeUrl || `https://www.youtube.com/watch?v=${vid.videoId}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-[#999997] hover:text-[#222222] transition-colors flex items-center gap-1"
+                        >
+                          <span>YouTube</span>
+                          <ExternalLink className="w-3 h-3" />
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -223,33 +276,36 @@ export default function VideosPage({ onNavigateHome, onNavigateToAdmin }) {
         )}
       </div>
 
-      {/* Video Modal Player */}
+      {/* Video Modal Player - Sized appropriately (max-w-2xl and max-h-[88vh]) */}
       {activeModalVideo && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-sm"
           onClick={() => setActiveModalVideo(null)}
         >
           <div
-            className="bg-[#1a1a1a] rounded-2xl max-w-4xl w-full overflow-hidden border border-[#333333] shadow-2xl relative"
+            className="bg-[#1a1a1a] rounded-2xl max-w-2xl w-full max-h-[88vh] overflow-hidden border border-[#333333] shadow-2xl flex flex-col relative animate-in fade-in zoom-in-95 duration-200"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="p-4 sm:p-5 flex items-center justify-between border-b border-[#2e2e2e]">
-              <div className="pr-4">
-                <span className="text-[11px] font-semibold text-[#cd9834] uppercase tracking-wider block mb-1">
-                  {activeModalVideo.category || 'Atelier Showcase'}
+            {/* Modal Header */}
+            <div className="px-4 py-3 sm:px-5 sm:py-3.5 flex items-center justify-between border-b border-[#2e2e2e] bg-[#141414]">
+              <div className="pr-4 min-w-0">
+                <span className="text-[10px] font-semibold text-[#cd9834] uppercase tracking-wider block mb-0.5">
+                  {activeModalVideo.category || 'Atelier Video'}
                 </span>
-                <h3 className="font-headline text-lg sm:text-xl text-white font-medium line-clamp-1">
+                <h3 className="font-headline text-sm sm:text-base text-white font-medium truncate">
                   {activeModalVideo.title}
                 </h3>
               </div>
               <button
                 onClick={() => setActiveModalVideo(null)}
-                className="text-gray-400 hover:text-white p-2 rounded-lg hover:bg-white/10 transition-colors focus:outline-none flex-shrink-0"
+                className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-gray-300 hover:text-white flex items-center justify-center transition-colors focus:outline-none flex-shrink-0 cursor-pointer"
+                title="Close"
               >
-                ✕
+                <X className="w-4 h-4" />
               </button>
             </div>
 
+            {/* Embed Iframe - Perfectly constrained */}
             <div className="aspect-video w-full bg-black">
               <iframe
                 src={`https://www.youtube-nocookie.com/embed/${activeModalVideo.videoId}?autoplay=1&rel=0`}
@@ -260,16 +316,17 @@ export default function VideosPage({ onNavigateHome, onNavigateToAdmin }) {
               />
             </div>
 
-            <div className="p-4 sm:p-5 bg-[#141414] text-xs sm:text-sm text-[#a0a09e] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-              <p className="leading-relaxed max-w-2xl">{activeModalVideo.description}</p>
+            {/* Modal Footer Description */}
+            <div className="px-4 py-3 sm:px-5 sm:py-3.5 bg-[#141414] text-xs text-[#a0a09e] flex items-center justify-between gap-3 border-t border-[#222222]">
+              <p className="line-clamp-2 max-w-md leading-relaxed">{activeModalVideo.description}</p>
               <a
                 href={activeModalVideo.youtubeUrl || `https://www.youtube.com/watch?v=${activeModalVideo.videoId}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#2a2a2a] hover:bg-[#cd9834] text-white text-xs whitespace-nowrap transition-colors"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#2a2a2a] hover:bg-[#cd9834] text-white text-xs whitespace-nowrap transition-colors flex-shrink-0"
               >
                 <span>Watch on YouTube</span>
-                <ExternalLink className="w-3.5 h-3.5" />
+                <ExternalLink className="w-3 h-3" />
               </a>
             </div>
           </div>
