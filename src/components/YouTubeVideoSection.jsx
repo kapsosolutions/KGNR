@@ -133,10 +133,7 @@ export default function YouTubeVideoSection({ onNavigateToVideos }) {
                       </div>
 
                       {/* Watermark badge */}
-                      <div className="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between pointer-events-none">
-                        <span className="text-[11px] text-white font-medium bg-black/70 backdrop-blur-sm px-2 py-0.5 rounded">
-                          {vid.category || 'Atelier'}
-                        </span>
+                      <div className="absolute bottom-2.5 right-2.5 pointer-events-none">
                         <span className="text-[10px] text-white/90 font-normal bg-black/70 backdrop-blur-sm px-2 py-0.5 rounded flex items-center gap-1">
                           Watch on YouTube
                         </span>
@@ -230,9 +227,6 @@ export default function YouTubeVideoSection({ onNavigateToVideos }) {
             {/* Modal Header */}
             <div className="px-4 py-3 sm:px-5 sm:py-3.5 flex items-center justify-between border-b border-[#2e2e2e] bg-[#141414]">
               <div className="pr-4 min-w-0">
-                <span className="text-[10px] font-semibold text-[#cd9834] uppercase tracking-wider block mb-0.5">
-                  {activeModalVideo.category || 'Atelier Video'}
-                </span>
                 <h3 className="font-headline text-sm sm:text-base text-white font-medium truncate">
                   {activeModalVideo.title}
                 </h3>

@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Play, Search, ArrowLeft, ExternalLink, Film, Sparkles, Filter, X, Maximize2 } from 'lucide-react';
+import { Play, ArrowLeft, ExternalLink, Film, Sparkles, X, Maximize2 } from 'lucide-react';
 
 export default function VideosPage({ onNavigateHome, onNavigateToAdmin }) {
   const [videos, setVideos] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('All');
   const [playingInlineId, setPlayingInlineId] = useState(null);
   const [activeModalVideo, setActiveModalVideo] = useState(null);
 
@@ -42,17 +40,6 @@ export default function VideosPage({ onNavigateHome, onNavigateToAdmin }) {
     }
   };
 
-  const categories = ['All', ...new Set(videos.map((v) => v.category || 'Atelier'))];
-
-  const filteredVideos = videos.filter((v) => {
-    const matchesSearch =
-      v.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      v.description.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesCategory =
-      selectedCategory === 'All' || (v.category || 'Atelier') === selectedCategory;
-    return matchesSearch && matchesCategory;
-  });
-
   return (
     <div className="min-h-screen bg-[#faf9f8] text-[#222222] py-10 sm:py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -76,7 +63,7 @@ export default function VideosPage({ onNavigateHome, onNavigateToAdmin }) {
         </div>
 
         {/* Page Hero Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12">
+        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#cd9834]/10 border border-[#cd9834]/30 text-[#cd9834] text-xs font-semibold uppercase tracking-widest mb-3">
             <Sparkles className="w-3.5 h-3.5" />
             <span>Complete Video Directory</span>
@@ -87,39 +74,6 @@ export default function VideosPage({ onNavigateHome, onNavigateToAdmin }) {
           <p className="text-sm sm:text-base text-[#6f6f6d] leading-relaxed">
             Watch our videos and conference highlights to learn more about our 22K gold finishing, temple ornament restoration, and master goldsmithing benchwork.
           </p>
-        </div>
-
-        {/* Search & Filter Toolbar */}
-        <div className="bg-white rounded-2xl border border-[#e5e3df] p-4 sm:p-6 mb-10 shadow-sm flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
-          {/* Search Input */}
-          <div className="relative flex-1">
-            <Search className="w-4 h-4 text-gray-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
-            <input
-              type="text"
-              placeholder="Search videos by title or topic..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-2.5 bg-[#fcfbf9] border border-[#e2e0dc] rounded-xl text-sm text-[#222222] placeholder-gray-400 focus:outline-none focus:border-[#cd9834]"
-            />
-          </div>
-
-          {/* Category Chips */}
-          <div className="flex items-center gap-1.5 overflow-x-auto pb-1 md:pb-0 scrollbar-none">
-            <Filter className="w-4 h-4 text-[#cd9834] mr-1 hidden sm:inline" />
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setSelectedCategory(cat)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-all cursor-pointer ${
-                  selectedCategory === cat
-                    ? 'bg-[#222222] text-white shadow-sm'
-                    : 'bg-[#f4f2ee] text-[#6f6f6d] hover:bg-[#e8e6e1] hover:text-[#222222]'
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
         </div>
 
         {/* 3-Column Video Cards Grid */}
@@ -135,26 +89,17 @@ export default function VideosPage({ onNavigateHome, onNavigateToAdmin }) {
               </div>
             ))}
           </div>
-        ) : filteredVideos.length === 0 ? (
+        ) : videos.length === 0 ? (
           <div className="text-center py-16 bg-white rounded-2xl border border-dashed border-gray-300 p-8 max-w-md mx-auto">
             <Film className="w-12 h-12 text-[#cd9834] mx-auto mb-3 opacity-60" />
-            <h3 className="text-base font-semibold text-[#222222] mb-1">No Matching Videos Found</h3>
+            <h3 className="text-base font-semibold text-[#222222] mb-1">No Videos Available</h3>
             <p className="text-xs text-[#6f6f6d] mb-4">
-              Try adjusting your search query or select another category filter.
+              Videos added in the Admin Panel will appear here.
             </p>
-            <button
-              onClick={() => {
-                setSearchQuery('');
-                setSelectedCategory('All');
-              }}
-              className="text-xs text-[#cd9834] font-medium underline cursor-pointer"
-            >
-              Reset Filters
-            </button>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {filteredVideos.map((vid) => {
+            {videos.map((vid) => {
               const id = vid.id || vid._id;
               const videoId = vid.videoId;
               const thumbUrl = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
@@ -203,10 +148,7 @@ export default function VideosPage({ onNavigateHome, onNavigateToAdmin }) {
                         </div>
                       </div>
 
-                      <div className="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between pointer-events-none">
-                        <span className="text-[11px] text-white font-medium bg-black/70 backdrop-blur-sm px-2 py-0.5 rounded">
-                          {vid.category || 'Atelier'}
-                        </span>
+                      <div className="absolute bottom-2.5 right-2.5 pointer-events-none">
                         <span className="text-[10px] text-white/90 font-normal bg-black/70 backdrop-blur-sm px-2 py-0.5 rounded">
                           Watch on YouTube
                         </span>
@@ -289,9 +231,6 @@ export default function VideosPage({ onNavigateHome, onNavigateToAdmin }) {
             {/* Modal Header */}
             <div className="px-4 py-3 sm:px-5 sm:py-3.5 flex items-center justify-between border-b border-[#2e2e2e] bg-[#141414]">
               <div className="pr-4 min-w-0">
-                <span className="text-[10px] font-semibold text-[#cd9834] uppercase tracking-wider block mb-0.5">
-                  {activeModalVideo.category || 'Atelier Video'}
-                </span>
                 <h3 className="font-headline text-sm sm:text-base text-white font-medium truncate">
                   {activeModalVideo.title}
                 </h3>

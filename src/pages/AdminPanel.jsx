@@ -35,7 +35,6 @@ export default function AdminPanel({ onNavigateHome, onNavigateToVideos }) {
   const [youtubeUrl, setYoutubeUrl] = useState('');
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [category, setCategory] = useState('Craftsmanship');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Check existing session
@@ -134,8 +133,7 @@ export default function AdminPanel({ onNavigateHome, onNavigateToVideos }) {
         body: JSON.stringify({
           youtubeUrl,
           title: title || 'KGN.R Atelier Video Showcase',
-          description: description || 'Master goldsmithing, finishing, and temple ornament craftsmanship.',
-          category: category || 'Craftsmanship'
+          description: description || 'Master goldsmithing, finishing, and temple ornament craftsmanship.'
         })
       });
 
@@ -396,36 +394,16 @@ export default function AdminPanel({ onNavigateHome, onNavigateToVideos }) {
                 />
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-[#c5c3c0] mb-1.5">
-                    Category Tag
-                  </label>
-                  <select
-                    value={category}
-                    onChange={(e) => setCategory(e.target.value)}
-                    className="w-full px-4 py-2.5 bg-[#121212] border border-[#3a3a3a] rounded-xl text-sm text-white focus:outline-none focus:border-[#cd9834]"
-                  >
-                    <option value="Craftsmanship">Craftsmanship</option>
-                    <option value="Temple Heritage">Temple Heritage</option>
-                    <option value="Finishing Tech">Finishing Tech</option>
-                    <option value="Bridal Vault">Bridal Vault</option>
-                    <option value="Restoration">Restoration</option>
-                    <option value="Atelier Story">Atelier Story</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-[#c5c3c0] mb-1.5">
-                    Identified Video ID
-                  </label>
-                  <input
-                    type="text"
-                    disabled
-                    value={previewVideoId || 'Waiting for URL...'}
-                    className="w-full px-4 py-2.5 bg-[#0f0f0f] border border-[#2a2a2a] rounded-xl text-xs text-[#cd9834] font-mono"
-                  />
-                </div>
+              <div>
+                <label className="block text-xs font-semibold uppercase tracking-wider text-[#c5c3c0] mb-1.5">
+                  Identified YouTube Video ID
+                </label>
+                <input
+                  type="text"
+                  disabled
+                  value={previewVideoId || 'Waiting for valid YouTube URL...'}
+                  className="w-full px-4 py-2.5 bg-[#0f0f0f] border border-[#2a2a2a] rounded-xl text-xs text-[#cd9834] font-mono"
+                />
               </div>
 
               <div>
@@ -500,9 +478,6 @@ export default function AdminPanel({ onNavigateHome, onNavigateToVideos }) {
                 </div>
 
                 <div className="p-4">
-                  <span className="text-[10px] text-[#cd9834] uppercase font-semibold block mb-1">
-                    {category}
-                  </span>
                   <h4 className="font-headline font-semibold text-sm line-clamp-2 text-[#222222] mb-1.5">
                     {title || 'Video Title Will Appear Here'}
                   </h4>
@@ -580,9 +555,6 @@ export default function AdminPanel({ onNavigateHome, onNavigateToVideos }) {
                           alt={vid.title}
                           className="w-full h-full object-cover"
                         />
-                        <span className="absolute bottom-2 left-2 text-[10px] bg-black/70 px-2 py-0.5 rounded text-white">
-                          {vid.category || 'Atelier'}
-                        </span>
                       </div>
 
                       <div className="p-4">
