@@ -1,12 +1,12 @@
 // KGN.R Atelier Service Worker - Instant Image Caching & Offline Acceleration
-const CACHE_NAME = 'kgnr-cache-v1';
+const CACHE_NAME = 'kgnr-cache-v2';
 
 const PRECACHE_ASSETS = [
   '/',
   '/hero.webp',
   '/hero.png',
-  '/card.webp',
-  '/card.png',
+  '/card1.webp',
+  '/card1.png',
   '/assets/logo.png',
   '/collections/1.webp',
   '/collections/2.webp',

@@ -13,12 +13,12 @@ export default function FloatingWhatsApp() {
       {/* Floating Tooltip Pill */}
       <div className="hidden sm:flex items-center gap-2 bg-white text-[#222222] px-3.5 py-1.5 rounded-full border border-[#25D366]/40 shadow-md text-xs font-medium tracking-wide transition-all duration-300 opacity-90 group-hover:opacity-100 group-hover:-translate-y-0.5">
         <span className="w-2 h-2 rounded-full bg-[#25D366] animate-pulse"></span>
-        <span>Chat with Master Rabbani</span>
+        <span>Chat with Mr. Rabbani</span>
       </div>
 
       {/* Main Circular Floating WhatsApp Button */}
       <a
-        href={`https://wa.me/${primaryPhone}?text=Hello%20Master%20Rabbani%20Shaik%20(KGN.R)%2C%20I%20am%20contacting%20you%20from%20your%20website%20regarding%20gold%20ornaments%20and%20finishing.`}
+        href={`https://wa.me/${primaryPhone}?text=Hello%20Mr.%20Rabbani%20Shaik%20(KGN.R)%2C%20I%20am%20contacting%20you%20from%20your%20website%20regarding%20gold%20ornaments%20and%20finishing.`}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat on WhatsApp with KGN.R Atelier"

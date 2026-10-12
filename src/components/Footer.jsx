@@ -43,7 +43,7 @@ export default function Footer({ setActivePage, onNavigateToVideos, onNavigateTo
             </div>
 
             <p className="text-[13px] text-[#a0a09e] leading-relaxed">
-              Under the master direction of <strong className="text-white font-medium">Rabbani Shaik</strong>, KGN.R delivers South India’s most revered digital electro-finishing, temple idol restoration, and custom gold ornaments with zero gold loss.
+              Under the master direction of <strong className="text-white font-medium">Mr. Rabbani Shaik</strong>, KGN.R delivers South India’s most revered digital electro-finishing, temple idol restoration, and custom gold ornaments with zero gold loss.
             </p>
 
             <div className="pt-2 flex items-center gap-2 text-xs text-[#cd9834]">

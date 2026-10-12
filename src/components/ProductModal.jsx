@@ -10,7 +10,7 @@ export default function ProductModal({ ornament, onClose }) {
   const primaryWhatsApp = ATELIER_INFO.phones[0].clean;
 
   const inquiryText = encodeURIComponent(
-    `Hello Rabbani Shaik (KGN.R),\nI am interested in acquiring or customizing this ornament:\n• Name: ${ornament.name}\n• Karat: ${ornament.karat}\n• Weight: ${ornament.weightGrams}g\nPlease share current quote, making charges, and custom order timeline.`
+    `Hello Mr. Rabbani Shaik (KGN.R),\nI am interested in acquiring or customizing this ornament:\n• Name: ${ornament.name}\n• Karat: ${ornament.karat}\n• Weight: ${ornament.weightGrams}g\nPlease share current quote, making charges, and custom order timeline.`
   );
 
   return (

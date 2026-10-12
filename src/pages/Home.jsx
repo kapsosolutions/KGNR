@@ -40,7 +40,7 @@ export default function Home({ setActiveSection, onNavigateToVideos }) {
     const heroImg = new Image();
     heroImg.src = '/hero.webp';
     const cardImg = new Image();
-    cardImg.src = '/card.webp';
+    cardImg.src = '/card1.webp';
   }, []);
 
   const scrollToSection = (id) => {
@@ -61,7 +61,7 @@ export default function Home({ setActiveSection, onNavigateToVideos }) {
     setFormSubmitted(true);
 
     const message = encodeURIComponent(
-      `Hello Master Rabbani Shaik (KGN.R),\nI am inquiring via your website:\n• Name: ${formData.name}\n• Phone: ${formData.phone}\n• Service/Piece: ${formData.service}\n• Karat: ${formData.karat}\n• Notes: ${formData.message || 'None'}`
+      `Hello Mr. Rabbani Shaik (KGN.R),\nI am inquiring via your website:\n• Name: ${formData.name}\n• Phone: ${formData.phone}\n• Service/Piece: ${formData.service}\n• Karat: ${formData.karat}\n• Notes: ${formData.message || 'None'}`
     );
 
     window.open(`https://wa.me/${primaryWhatsApp}?text=${message}`, '_blank');
@@ -136,7 +136,7 @@ export default function Home({ setActiveSection, onNavigateToVideos }) {
                   <div className="text-[#cd9834] text-xs uppercase font-semibold tracking-wider mb-1">
                     25+ Years
                   </div>
-                  <p className="text-xs text-[#6f6f6d] leading-tight">Under Master Rabbani</p>
+                  <p className="text-xs text-[#6f6f6d] leading-tight">Under Mr. Rabbani</p>
                 </div>
               </div>
             </div>
@@ -207,7 +207,7 @@ export default function Home({ setActiveSection, onNavigateToVideos }) {
       {/* 3. Video Craftsmanship Showcase */}
       <VideoShowcase />
 
-      {/* 4. About Atelier Section (With public/card.png) */}
+      {/* 4. About Atelier Section (With public/card1.png) */}
       <section id="about" className="bg-white py-16 sm:py-24 border-t border-[#f0f0f0]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
@@ -223,13 +223,13 @@ export default function Home({ setActiveSection, onNavigateToVideos }) {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-0">
-            {/* Left Column: Visiting Card Image (/card.webp with /card.png fallback) */}
+            {/* Left Column: Visiting Card Image (/card1.webp with /card1.png fallback) */}
             <div className="lg:col-span-6 relative">
               <div className="relative rounded-2xl overflow-hidden border border-[#cd9834]/40 bg-[#faf9f8] p-3 sm:p-4 shadow-sm group">
                 <picture>
-                  <source srcSet="/card.webp" type="image/webp" />
+                  <source srcSet="/card1.webp" type="image/webp" />
                   <img
-                    src="/card.png"
+                    src="/card1.png"
                     alt="KGN.R Official Workshop Card - Rabbani Shaik"
                     className="w-full h-auto rounded-xl object-contain transition-transform duration-500 group-hover:scale-[1.02]"
                     loading="eager"
@@ -282,12 +282,12 @@ export default function Home({ setActiveSection, onNavigateToVideos }) {
                   <span>Book In-Person Consultation</span>
                 </button>
                 <a
-                  href={`https://wa.me/${primaryWhatsApp}?text=Hello%20Master%20Rabbani%20Shaik%2C%20I%20would%20like%20to%20consult%20on%20an%20ornament%20or%20finishing%20project.`}
+                  href={`https://wa.me/${primaryWhatsApp}?text=Hello%20Mr.%20Rabbani%20Shaik%2C%20I%20would%20like%20to%20consult%20on%20an%20ornament%20or%20finishing%20project.`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-11 h-11 rounded-full border border-[#25D366]/50 bg-[#f6fbf7] hover:bg-[#25D366]/15 hover:border-[#25D366] flex items-center justify-center transition-all hover:scale-105 flex-shrink-0 shadow-sm"
-                  title="WhatsApp Master Rabbani"
-                  aria-label="WhatsApp Master Rabbani"
+                  title="WhatsApp Mr. Rabbani"
+                  aria-label="WhatsApp Mr. Rabbani"
                 >
                   <WhatsAppIcon className="w-5 h-5" color="#25D366" />
                 </a>
@@ -521,7 +521,7 @@ export default function Home({ setActiveSection, onNavigateToVideos }) {
                 </a>
 
                 <a
-                  href={`https://wa.me/${primaryWhatsApp}?text=Hello%20Master%20Rabbani%20Shaik%2C%20I%20would%20like%20directions%20to%20visit%20your%20workshop%20in%20Chinna%20Bazaar.`}
+                  href={`https://wa.me/${primaryWhatsApp}?text=Hello%20Mr.%20Rabbani%20Shaik%2C%20I%20would%20like%20directions%20to%20visit%20your%20workshop%20in%20Chinna%20Bazaar.`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="buick-pill-dark text-xs uppercase tracking-wider py-3 px-5 flex items-center justify-center gap-2"
